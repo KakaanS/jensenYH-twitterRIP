@@ -2,7 +2,15 @@ const Signup = () => {
   return (
     <div>
       <h1>Signup</h1>
-      <p>Testar så in i helvete</p>
+      <div className="userName">
+        <label>Email:</label>
+        <input type="text" />
+        <label>Nickname:</label>
+        <input type="text" />
+        <label>Password:</label>
+        <input type="text" />
+        <button type="submit">Submit</button>
+      </div>
     </div>
   );
 };

@@ -8,14 +8,14 @@ const SignUp = () => {
 
   const { signup } = useContext(UserContext);
 
-  const handleSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     signup(nickname, email, password);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitHandler}>
         <input
           type="text"
           placeholder="nickname"

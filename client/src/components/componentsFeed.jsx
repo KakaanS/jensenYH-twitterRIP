@@ -1,7 +1,27 @@
-const Feed = (props) => {
+import React from "react";
+import"../css/Feed.css";
+import TweetBox from "./Tweetbox";
+import Post from "./Post"
+
+
+
+function Feed  ()  {
   return (
-    <div>
-      <h1>Feed</h1>
+    <div className="feed">
+      
+      {/*Header*/ }
+      <div className="feed__header">
+        
+      </div>
+
+       {/*TweetBox*/ }
+       <TweetBox />
+
+        {/*Post*/ }
+        <Post />
+        {/*Post*/ }
+        {/*Post*/ }
+        {/*Post*/ }
     </div>
   );
 };

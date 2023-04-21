@@ -1,10 +1,19 @@
-import NavSearchBar from "../components/componentsNavAndSearchBar";
 
-const Profile = () => {
+
+import Trends from "../components/componentsTrends";
+import Sidebar from "../components/componentsSidebar";
+
+
+const Profile =  () => {
   return (
     <div>
-      <NavSearchBar />
-      <h1>Profile</h1>
+     
+      <Sidebar />
+      
+      <Trends />
+     
+
+
     </div>
   );
 };

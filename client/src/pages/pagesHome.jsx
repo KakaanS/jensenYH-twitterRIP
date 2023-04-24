@@ -1,13 +1,14 @@
-import NavSearchBar from "../components/componentsNavAndSearchBar";
-
+import Sidebar from "../components/componentsSidebar";
 import Feed from "../components/componentsFeed";
 import Trends from "../components/componentsTrends";
+import "../css/main.css"
+
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <NavSearchBar />
+    <div class="app">
+     
+      <Sidebar />
       <Feed />
       <Trends />
     </div>

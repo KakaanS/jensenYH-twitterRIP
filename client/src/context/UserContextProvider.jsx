@@ -4,7 +4,8 @@ export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
   const signUp = (nickname, email, password) => {
-    // backend ska in här så vi kan skapa en användare, Simon go get em.
+    console.log("signUp");
+    console.log(nickname, email, password);
   };
 
   return (

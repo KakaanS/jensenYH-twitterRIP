@@ -1,7 +1,7 @@
 import React from "react";
 import"../css/Feed.css";
 import TweetBox from "./Tweetbox";
-import Post from "./Post"
+//import Post from "./Post"
 
 
 
@@ -18,7 +18,7 @@ function Feed  ()  {
        <TweetBox />
 
         {/*Post*/ }
-        <Post />
+        {/*<Post />*/}
         {/*Post*/ }
         {/*Post*/ }
         {/*Post*/ }
@@ -26,3 +26,4 @@ function Feed  ()  {
   );
 };
 export default Feed;
+

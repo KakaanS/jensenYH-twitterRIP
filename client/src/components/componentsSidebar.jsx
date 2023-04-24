@@ -18,9 +18,7 @@ function Sidebar() {
       <SidebarOptions Icon={SearchIcon} text="Explore"/>
       
 
-      {/*SidebarOption*/}
-      {/*SidebarOption*/}
-
+      
       {/*Button*/}
       <Button>Tweet</Button>
 
@@ -29,3 +27,4 @@ function Sidebar() {
 }
 
 export default Sidebar
+

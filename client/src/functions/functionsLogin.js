@@ -1,28 +1,20 @@
-function login(email, password) {
-  return fetch("http://localhost:3002/api/login", {
+async function login(email, password) {
+  return await fetch("http://localhost:3002/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((response) => {
-    if (response.status !== 200) {
-      throw new Error("Login failed");
-    }
-    return response.json();
-  });
+  })
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error("Login failed");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data.token;
+    });
 }
 
-function getJWT(token) {
-  return fetch("http://localhost:3002/api/JWT", {
-    method: "POST",
-    headers: { Authorization: "Bearer ${token}" },
-  }).then((response) => {
-    if (response.status !== 200) {
-      throw new Error("JWT failed");
-    }
-    return response.json();
-  });
-}
-
-export { login, getJWT };
+export { login };

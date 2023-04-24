@@ -1,4 +1,5 @@
 import react, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
 
 const SignUp = () => {
@@ -12,11 +13,12 @@ const SignUp = () => {
   const [webbpage, setWebbpage] = useState("");
 
   const { signup } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3002/api/signup", {
+    fetch("http://localhost:3002/user/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +37,8 @@ const SignUp = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        navigate("/");
+        console.log("user redirected to login");
       })
       .catch((error) => {
         console.error(error);
@@ -43,6 +47,7 @@ const SignUp = () => {
 
   return (
     <div>
+      <h1>Sign Up</h1>
       <form onSubmit={submitHandler}>
         <input
           type="text"

@@ -1,4 +1,4 @@
-const forgotPassword = async (email, nickname) => {
+export const forgotPassword = async (email, nickname) => {
   try {
     const response = await fetch("http://localhost:3002/user/forgotpassword", {
       method: "POST",
@@ -19,5 +19,3 @@ const forgotPassword = async (email, nickname) => {
     return null;
   }
 };
-
-export default forgotPassword;

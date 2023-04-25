@@ -1,19 +1,40 @@
 import React, { useState } from "react";
+import { login } from "../functions/functionsLogin.js";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  // const [ShowProfile, setShowProfile] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    login(email, password)
+      .then((token) => {
+        localStorage.setItem("token", token);
+        console.log(token, "successful Login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <input
         type="text"
-        placeholder="Username"
+        placeholder="Email"
+        value={email}
         onChange={(event) => {
-          setUsername(event.target.value);
+          setEmail(event.target.value);
         }}
       />
-      <input type="text" placeholder="password" />
-      <button>LOGIN</button>
+      <input
+        type="text"
+        placeholder="Password"
+        value={password}
+        onChange={(event) => {
+          setPassword(event.target.value);
+        }}
+      />
+      <button onClick={handleLogin}>LOGIN</button>
     </>
   );
 }

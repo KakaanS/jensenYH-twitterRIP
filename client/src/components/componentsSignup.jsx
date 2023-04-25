@@ -1,22 +1,31 @@
-import react, { useContext, useState } from "react";
+import react, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
+import { checkPasswordMatch } from "../functions/functionsSignup.js";
 
 const SignUp = () => {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirm] = useState("");
   const [name, setName] = useState("");
   const [about, setAbout] = useState("");
   const [employment, setEmployment] = useState("");
   const [hometown, setHometown] = useState("");
   const [webbpage, setWebbpage] = useState("");
+  const [passwordMatchError, setPasswordMatchError] = useState(false);
 
   const { signup } = useContext(UserContext);
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if (!checkPasswordMatch(password, confirmPassword)) {
+      setPasswordMatchError(true);
+      return;
+    }
+    setPasswordMatchError(false);
 
     fetch("http://localhost:3002/user/signup", {
       method: "POST",
@@ -45,10 +54,14 @@ const SignUp = () => {
       });
   };
 
+  const passwordClassName = passwordMatchError
+    ? "inputPassword error"
+    : "inputPassword";
+
   return (
-    <div>
+    <div className="signUpContainer">
       <h1>Sign Up</h1>
-      <form onSubmit={submitHandler}>
+      <form className="signUpForm" onSubmit={submitHandler}>
         <input
           type="text"
           placeholder="Name"
@@ -93,13 +106,26 @@ const SignUp = () => {
         />
 
         <input
+          className={passwordClassName}
           type="password"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <input
+          className={passwordClassName}
+          type="password"
+          placeholder="confirm password"
+          value={confirmPassword}
+          onChange={(e) => setConfirm(e.target.value)}
+        />
+        {passwordMatchError && (
+          <p className="password-error">Passwords do not match.</p>
+        )}
 
-        <button type="submit">Sign Up</button>
+        <button className="signUpBtn" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );

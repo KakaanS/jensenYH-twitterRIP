@@ -6,6 +6,9 @@ import Start from "./pages/PagesStart";
 import Home from "./pages/pagesHome";
 import Profile from "./pages/pagesProfile";
 
+//CSS import
+import "./css/signUp.css";
+
 function App() {
   return (
     <>

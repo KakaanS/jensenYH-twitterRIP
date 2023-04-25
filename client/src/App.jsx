@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import "./css/main.css";
 import Start from "./pages/PagesStart";
@@ -7,10 +7,17 @@ import Profile from "./pages/pagesProfile";
 import { checkAuth } from "./functions/functionsToken";
 
 function AuthenticatedRoutes() {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    checkAuth();
-    console.log("checkAuth");
-  }, []);
+    async function redirectIfNotAuthenticated() {
+      const isAuth = await checkAuth();
+      if (!isAuth) {
+        navigate("/");
+      }
+    }
+    redirectIfNotAuthenticated();
+  }, [navigate]);
 
   return (
     <>

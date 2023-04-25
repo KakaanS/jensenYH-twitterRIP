@@ -11,8 +11,6 @@ async function checkAuth() {
       },
     });
 
-    console.log(response, "RESPONSE");
-
     if (!response.ok) {
       console.log("response unauthorized");
       throw new Error("Unauthorized");

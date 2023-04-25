@@ -4,15 +4,15 @@ import { forgotPassword } from "../functions/functionsForgotPassword.js";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [passwordResetSuccessful, setPasswordResetSuccessful] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPassword = await forgotPassword(email, nickname);
-    if (newPassword) {
-      setPassword(newPassword);
-    } else {
-      setPassword("No user found with that email and nickname");
+    const result = await forgotPassword(email, nickname, newPassword);
+    console.log(result);
+    if (result) {
+      setPasswordResetSuccessful(true);
     }
   };
 
@@ -38,16 +38,22 @@ const ForgotPassword = () => {
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
+        <input
+          className="forgotPasswordInput"
+          type="password"
+          placeholder="New password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
         <button className="forgotPasswordBtn" type="submit">
           Submit
         </button>
-
-        <div className="forgotPasswordContainer2">
-          {password && (
-            <p className="forgotPasswordDisplay">{`Your password is: ${password}`}</p>
-          )}
-        </div>
       </form>
+      {passwordResetSuccessful && (
+        <div className="forgotPasswordContainer2">
+          <p className="forgotPasswordDisplay">Your password has been reset.</p>
+        </div>
+      )}
     </div>
   );
 };

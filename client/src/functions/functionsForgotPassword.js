@@ -1,21 +1,23 @@
-export const forgotPassword = async (email, nickname) => {
+const forgotPassword = async (email, nickname, newPassword) => {
   try {
     const response = await fetch("http://localhost:3002/user/forgotpassword", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, nickname }),
+      body: JSON.stringify({ email, nickname, newPassword }),
     });
 
     const data = await response.json();
-    if (data.password) {
-      return data.password;
+    if (data.message === "Password updated successfully") {
+      return true;
     } else {
-      return null;
+      return false;
     }
   } catch (error) {
     console.error(error);
-    return null;
+    return false;
   }
 };
+
+export { forgotPassword };

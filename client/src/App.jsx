@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import UserContextProvider from "./context/UserContextProvider";
 
-// Pages import
 import Start from "./pages/PagesStart";
 import Home from "./pages/pagesHome";
 import Profile from "./pages/pagesProfile";
 
 //CSS import
 import "./css/signUp.css";
+import "./css/main.css"
 
 function App() {
   return (

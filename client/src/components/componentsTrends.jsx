@@ -1,9 +1,14 @@
-const Trends = () => {
+import React from 'react'
+import "../css/Trends.css"
+
+
+function Trends ()  {
   return (
-    <div>
-      <h1>Trends</h1>
+    <div className='trends'>
+      <h2>Trends</h2>
     </div>
   );
 };
 
 export default Trends;
+

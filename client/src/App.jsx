@@ -1,10 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import "./css/main.css"
+import { useEffect } from "react";
+import "./css/main.css";
 import Start from "./pages/PagesStart";
 import Home from "./pages/pagesHome";
 import Profile from "./pages/pagesProfile";
+import { checkAuth } from "./functions/functionsToken";
 
-function App() {
+function AuthenticatedRoutes() {
+  useEffect(() => {
+    checkAuth();
+    console.log("checkAuth");
+  }, []);
+
   return (
     <>
       <Routes>
@@ -12,6 +19,13 @@ function App() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/profile/:id" element={<Profile />}></Route>
       </Routes>
+    </>
+  );
+}
+function App() {
+  return (
+    <>
+      <AuthenticatedRoutes />
     </>
   );
 }

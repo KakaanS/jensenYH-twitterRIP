@@ -1,0 +1,9 @@
+.password-error {
+  color: red;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+.inputPassword.error {
+  border-color: red !important;
+  color: red;
+}

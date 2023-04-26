@@ -1,14 +1,17 @@
-import React from 'react'
-import "../css/Trends.css"
+import { useContext } from "react";
+import { TrendsContext } from "../context/TrendsContext";
 
+function Trends() {
+  const { hashtags } = useContext(TrendsContext);
 
-function Trends ()  {
   return (
-    <div className='trends'>
-      <h2>Trends</h2>
+    <div>
+      <h1>Trending shit</h1>
+      {hashtags.map((hastag, index) => (
+        <div key={index}>{hastag}</div>
+      ))}
     </div>
   );
-};
+}
 
 export default Trends;
-

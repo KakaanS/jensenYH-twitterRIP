@@ -7,7 +7,7 @@ import Profile from "./pages/pagesProfile";
 
 //CSS import
 import "./css/signUp.css";
-import "./css/main.css"
+import "./css/main.css";
 
 function App() {
   return (

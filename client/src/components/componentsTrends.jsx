@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { TrendsContext } from "../context/TrendsContext";
-
+/* import { TrendsContext } from "../context/TrendsContext.jsx";
+ */
 function Trends() {
-  const { hashtags } = useContext(TrendsContext);
+  const { hashtags } = useContext(/* TrendsContext */);
 
   return (
     <div>

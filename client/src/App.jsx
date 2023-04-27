@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import UserContextProvider from "./context/UserContextProvider";
+import { TrendsContextProvider } from "./context/TrendsContext";
 
 import Start from "./pages/PagesStart";
 import Home from "./pages/pagesHome";
@@ -12,13 +12,13 @@ import "./css/main.css";
 function App() {
   return (
     <>
-      <UserContextProvider>
+      <TrendsContextProvider>
         <Routes>
           <Route path="/" element={<Start />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/profile/:id" element={<Profile />}></Route>
         </Routes>
-      </UserContextProvider>
+      </TrendsContextProvider>
     </>
   );
 }

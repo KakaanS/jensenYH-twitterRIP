@@ -1,7 +1,7 @@
 import React, {useState } from 'react'
 import "../css/TweetBox.css"
 import {Avatar, Button} from '@mui/material';
-import sendTweet from "../functions/functionsHandleTweet";
+import sendTweet from "../functions/functionsHandleTweets.js";
 
 
 function TweetBox() {

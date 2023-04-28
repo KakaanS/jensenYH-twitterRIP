@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { login } from "../functions/functionsLogin.js";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     login(email, password)
       .then((token) => {
         localStorage.setItem("token", token);
         console.log(token, "successful Login");
+        navigate("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -26,8 +29,9 @@ function Login() {
           setEmail(event.target.value);
         }}
       />
+      n
       <input
-        type="text"
+        type="password"
         placeholder="Password"
         value={password}
         onChange={(event) => {

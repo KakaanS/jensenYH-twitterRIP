@@ -24,7 +24,6 @@ function AuthenticatedRoutes() {
     redirectIfNotAuthenticated();
   }, [navigate]);
 
-
   return (
     <>
       <TrendsContextProvider>

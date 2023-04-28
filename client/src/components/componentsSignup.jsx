@@ -15,7 +15,6 @@ const SignUp = () => {
   const [webbpage, setWebbpage] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState(false);
 
-  const { signup } = useContext(UserContext);
   const navigate = useNavigate();
 
   const submitHandler = (e) => {

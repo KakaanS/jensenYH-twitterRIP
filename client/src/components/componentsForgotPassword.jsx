@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { forgotPassword } from "../functions/functionsForgotPassword.js";
 
 const ForgotPassword = () => {
@@ -6,13 +7,26 @@ const ForgotPassword = () => {
   const [nickname, setNickname] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [passwordResetSuccessful, setPasswordResetSuccessful] = useState(false);
+  const [passwordResetUnsuccessful, setPasswordResetUnsuccessful] =
+    useState(false);
+  const [emailValid, setEmailValid] = useState(true);
+  const [nicknameValid, setNicknameValid] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await forgotPassword(email, nickname, newPassword);
     console.log(result);
-    if (result) {
+    if (result === true) {
       setPasswordResetSuccessful(true);
+      navigate("/");
+      console.log("Password reset successful, redirected to Login");
+    } else {
+      setEmailValid(false);
+      setNicknameValid(false);
+      setPasswordResetUnsuccessful(true);
+      console.log("Password reset failed");
     }
   };
 
@@ -25,18 +39,24 @@ const ForgotPassword = () => {
         </label>
         <br />
         <input
-          className="forgotPasswordInput"
+          className={`forgotPasswordInput ${!emailValid ? "invalid" : ""}`}
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setEmailValid(true);
+          }}
         />
         <input
-          className="forgotPasswordInput"
+          className={`forgotPasswordInput ${!nicknameValid ? "invalid" : ""}`}
           type="text"
           placeholder="nickname"
           value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
+          onChange={(e) => {
+            setNickname(e.target.value);
+            setNicknameValid(true);
+          }}
         />
         <input
           className="forgotPasswordInput"
@@ -49,11 +69,14 @@ const ForgotPassword = () => {
           Submit
         </button>
       </form>
-      {passwordResetSuccessful && (
-        <div className="forgotPasswordContainer2">
+      <div className="forgotPasswordContainer2">
+        {passwordResetSuccessful && (
           <p className="forgotPasswordDisplay">Your password has been reset.</p>
-        </div>
-      )}
+        )}
+        {passwordResetUnsuccessful && (
+          <p className="forgotPasswordDisplay">Incorrect email or nickname.</p>
+        )}
+      </div>
     </div>
   );
 };

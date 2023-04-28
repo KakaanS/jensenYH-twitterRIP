@@ -4,6 +4,7 @@ import Trends from "../components/componentsTrends";
 import Logout from "../components/componentsLogout";
 import "../css/main.css";
 
+//<Trends />
 const Home = () => {
   return (
     <div class="app">

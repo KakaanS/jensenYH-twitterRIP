@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/Profilepage.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import followUser from "../functions/functionsFollowUser";
 
 const ProfilePage = ({ username }) => {
   const [user, setUser] = useState(null);
@@ -27,6 +28,8 @@ const ProfilePage = ({ username }) => {
     fetchUser();
   }, [username]);
 
+  button(nickname);
+
   // useEffect(() => {
   //   const fetchTweets = async () => {
   //     const response = await fetch(`/api/users/${username}/tweets`);
@@ -36,18 +39,6 @@ const ProfilePage = ({ username }) => {
 
   //   fetchTweets();
   // }, [username]);
-
-  const handleFollow = async () => {
-    try {
-      const response = await fetch(`/api/users/${username}/follow`, {
-        method: "POST",
-      });
-      const data = await response.json();
-      setIsFollowing(data.isFollowing);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const {
     background_image,

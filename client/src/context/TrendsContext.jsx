@@ -4,18 +4,26 @@ export const TrendsContext = createContext();
 
 export const TrendsContextProvider = ({ children }) => {
   const [hashtags, setHashtags] = useState([]);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    // backend fetch
-    fetch("http://localhost:3002/trending/hashtags")
+    fetch("http://localhost:3002/trending/hashtags", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
       .then((response) => response.json())
       .then((data) => setHashtags(data))
-      .catch((error) => console.log(error));
-  }, []);
+      .catch((error) => {
+        throw new Error(error.message);
+      });
+  }, [token]);
+
   const contextValues = {
     hashtags,
     setHashtags,
   };
+
   return (
     <TrendsContext.Provider value={contextValues}>
       {children}

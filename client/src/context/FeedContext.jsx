@@ -7,36 +7,33 @@ export const FeedProvider = (props) => {
     allTweets: [],
     loading: true,
   });
+  const [reload, setReload] = useState(true);
+
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    console.log("useeffect");
     fetch("http://localhost:3002/tweets/feed", {
       headers: {
         Authorization: "Bearer " + token,
       },
     })
       .then((res) => {
-        console.log("res", Response);
         return res.json();
       })
       .then((data) => {
         setTweetsState({ allTweets: data.allTweets, loading: false });
-        console.log("allTweets", data.allTweets);
       })
       .catch((err) => {
-        console.log("Error", err);
         setTweetsState({ allTweets: [], loading: false });
       });
-  }, [token]);
+  }, [token, reload]);
 
   return (
-    console.log("tweetstate", tweetsState),
-    (
-      <FeedContext.Provider value={[tweetsState, setTweetsState]}>
-        {props.children}
-      </FeedContext.Provider>
-    )
+    <FeedContext.Provider
+      value={[tweetsState, setTweetsState, reload, setReload]}
+    >
+      {props.children}
+    </FeedContext.Provider>
   );
 };
 

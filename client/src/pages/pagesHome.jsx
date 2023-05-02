@@ -3,6 +3,7 @@ import HomeMiddle from "../components/componentsHomeMiddle";
 import Trends from "../components/componentsTrends";
 import Logout from "../components/componentsLogout";
 
+import { TrendsProvider } from "../context/TrendsContext";
 import "../css/main.css";
 
 const Home = () => {
@@ -10,7 +11,9 @@ const Home = () => {
     <div class="app">
       <Sidebar />
       <HomeMiddle />
-      <Trends />
+      <TrendsProvider>
+        <Trends />
+      </TrendsProvider>
       <Logout />
     </div>
   );

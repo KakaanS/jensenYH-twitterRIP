@@ -49,8 +49,15 @@ function SearchBar() {
         <input type="text" onChange={handleSearch} value={searchTerm} />
         <button type="submit">Search</button>
       </form>
+      <ul>
+        {searchResults.map((result) => (
+          <li key={result.id}>{result.name}</li>
+        ))}
+      </ul>
     </SearchContext.Provider>
   );
 }
+
+// SearchContext.Consumer - tillhandahåller sökresultatem till andra komponenter
 
 export default SearchBar;

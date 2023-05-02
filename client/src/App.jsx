@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { TrendsContextProvider } from "./context/TrendsContext";
 
-import Start from "./pages/PagesStart";
+import Start from "./pages/pagesStart";
 import Home from "./pages/pagesHome";
 import Profile from "./pages/pagesProfile";
 import { checkAuth } from "./functions/functionsToken";
@@ -23,7 +23,6 @@ function AuthenticatedRoutes() {
     }
     redirectIfNotAuthenticated();
   }, [navigate]);
-
 
   return (
     <>

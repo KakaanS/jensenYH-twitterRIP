@@ -3,13 +3,16 @@ import "../css/TweetBox.css";
 import { Avatar, Button } from "@mui/material";
 import sendTweet from "../functions/functionsSendTweet";
 
-function TweetBoxForSendingTweets() {
+function TweetBoxForSendingTweets({ reload, setReload }) {
   const [tweetMessage, setTweetMessage] = useState("");
 
-  const handleSendTweet = (e) => {
+  const handleSendTweet = async (e) => {
     e.preventDefault();
-    sendTweet(tweetMessage);
-    setTweetMessage("");
+    const status = await sendTweet(tweetMessage);
+    if (status) {
+      setReload(!reload);
+      setTweetMessage("");
+    }
   };
 
   return (

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/Feed.css";
 import TweetBoxForSendingTweets from "./componentTweetBoxForSendingTweets";
 import Post from "./componentPost";
 
 function Feed() {
+  const [reload, setReload] = useState(true);
   return (
     <div className="feed">
       {/*Header*/}
@@ -11,7 +12,7 @@ function Feed() {
         <h2>Home</h2>
       </div>
 
-      <TweetBoxForSendingTweets />
+      <TweetBoxForSendingTweets reload={reload} setReload={setReload} />
 
       {/*Post*/}
       <Post />

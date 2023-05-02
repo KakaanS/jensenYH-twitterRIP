@@ -1,32 +1,27 @@
 import React from "react";
-import"../css/Feed.css";
-import TweetBox from "./componentTweetbox";
-import Post from "./componentPost"
+import "../css/Feed.css";
+import TweetBoxForSendingTweets from "./componentTweetBoxForSendingTweets";
+import Post from "./componentPost";
 
-
-
-function Feed  ()  {
+function Feed() {
   return (
     <div className="feed">
-     
-      {/*Header*/ }
+      {/*Header*/}
       <div className="feed__header">
         <h2>Home</h2>
       </div>
 
-       <TweetBox />
-       
+      <TweetBoxForSendingTweets />
 
-        {/*Post*/ }
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        {/*Post*/ }
-        {/*Post*/ }
-        {/*Post*/ }
+      {/*Post*/}
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      {/*Post*/}
+      {/*Post*/}
+      {/*Post*/}
     </div>
   );
-};
+}
 export default Feed;
-

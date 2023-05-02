@@ -6,8 +6,7 @@ import followUser from "../functions/functionsFollowUser";
 
 const ProfilePage = ({ username }) => {
   const [user, setUser] = useState(null);
-  // const [tweets, setTweets] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, _setIsFollowing] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,18 +27,6 @@ const ProfilePage = ({ username }) => {
     fetchUser();
   }, [username]);
 
-  button(nickname);
-
-  // useEffect(() => {
-  //   const fetchTweets = async () => {
-  //     const response = await fetch(`/api/users/${username}/tweets`);
-  //     const data = await response.json();
-  //     setTweets(data);
-  //   };
-
-  //   fetchTweets();
-  // }, [username]);
-
   const {
     background_image,
     profile_image,
@@ -54,16 +41,14 @@ const ProfilePage = ({ username }) => {
     followers,
     following,
   } = user || {};
-  // console.log("followers", followers);
-  // const followersCount = followers.length;
-  // console.log("followersCount", followersCount);
+
   return (
     <div className="profile-page">
-      {/* <Link to="/">Back</Link> */}
+      <Link to="/">Back</Link>
       <img src={background_image} alt="Background image"></img>
       <img src={profile_image} alt="Profile image"></img>
       <h2>{name}</h2>
-      <button className="follow-button" onClick={handleFollow}>
+      <button className="follow-button" onClick={() => followUser(nickname)}>
         {isFollowing ? "Following" : "Follow"}
       </button>
       <h3>@{nickname}</h3>
@@ -75,11 +60,6 @@ const ProfilePage = ({ username }) => {
       <p>Joined: {date}</p>
       <p>{followers.length}Followers</p>
       <p>{following.length}Following</p>
-      <ul>
-        {/* {tweets.map((tweet) => (
-          <li key={tweet.id_str}>{tweet.text}</li>
-        ))} */}
-      </ul>
     </div>
   );
 };

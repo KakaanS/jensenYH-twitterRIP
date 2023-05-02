@@ -11,7 +11,7 @@ const LogoutModal = ({ show, closeCallback, handleLogoutCallback }) => {
         <div className="modalContainer">
           <div className="modalBackground"></div>
           <Modal className="modalLogout" show={show} onHide={closeCallback}>
-            <Modal.Header hideCloseButton>
+            <Modal.Header>
               <Modal.Title>
                 <h4>Confirm logout</h4>
               </Modal.Title>

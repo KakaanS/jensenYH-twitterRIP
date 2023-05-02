@@ -1,6 +1,5 @@
 import react, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContextProvider";
 import { checkPasswordMatch } from "../functions/functionsSignup.js";
 
 const SignUp = () => {
@@ -15,7 +14,6 @@ const SignUp = () => {
   const [webbpage, setWebbpage] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState(false);
 
-  const { signup } = useContext(UserContext);
   const navigate = useNavigate();
 
   const submitHandler = (e) => {

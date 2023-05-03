@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import followUser from "../functions/functionsFollowUser";
 
+import TweetFeedProfile from "./componentProfileTweetFeed";
+
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
@@ -55,21 +57,24 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile-page">
-      <img src={profile_image} alt="Profile image"></img>
-      <h2>{name}</h2>
-      <button className="follow-button" onClick={followButton}>
-        {isFollowing ? "Following" : "Follow"}
-      </button>
-      <h3>@{nickname}</h3>
-      <h4>Tweets:{tweets.length}</h4>
-      <p>About:{about}</p>
-      <p>Employment:{employment}</p>
-      <p>Hometown:{hometown}</p>
-      <p>Webbpage:{webbpage}</p>
-      <p>Joined: {date}</p>
-      <p>{followers.length}Followers</p>
-      <p>{following.length}Following</p>
+    <div className="profile-middle">
+      <div className="profile-page">
+        <img src={profile_image} alt="Profile image"></img>
+        <h2>{name}</h2>
+        <button className="follow-button" onClick={followButton}>
+          {isFollowing ? "Following" : "Follow"}
+        </button>
+        <h3>@{nickname}</h3>
+        <h4>Tweets:{tweets.length}</h4>
+        <p>About:{about}</p>
+        <p>Employment:{employment}</p>
+        <p>Hometown:{hometown}</p>
+        <p>Webbpage:{webbpage}</p>
+        <p>Joined: {date}</p>
+        <p>{followers.length}Followers</p>
+        <p>{following.length}Following</p>
+      </div>
+      <TweetFeedProfile username={username} />
     </div>
   );
 };

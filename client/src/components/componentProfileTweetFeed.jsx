@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
-function TweetFeed() {
+function TweetFeedProfile({ username }) {
   const [tweets, setTweets] = useState([]);
 
   useEffect(() => {
     const fetchTweets = async () => {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3002/user/profile/${tweets}`,
+        `http://localhost:3002/tweets/fromUser/${username}`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -15,23 +16,42 @@ function TweetFeed() {
         }
       );
       const data = await response.json();
-      setTweets(data.allTweets);
+      setTweets(data.tweets);
     };
 
     fetchTweets();
   }, [username]);
 
+  if (!tweets) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
+      <h3>Profile Tweets</h3>
       {tweets.map((tweet) => (
-        <div key={tweet._id}>
-          <p>{tweet.tweet}</p>
-          <p>{tweet.nickname}</p>
-          <p>{tweet.date}</p>
+        <div key={tweet._id} className="post">
+          <div className="post__avatar"></div>
+
+          <div className="post__body">
+            <div className="post__header">
+              <div className="post__headerText">
+                <h3>
+                  <span>@{tweet.nickname}</span>
+                </h3>
+              </div>
+              <div className="post__headerDiscription">
+                <p>{tweet.tweet}</p>
+              </div>
+            </div>
+            <div className="post__footer">
+              <ChatBubbleOutlineIcon fontSize="small" />
+            </div>
+          </div>
         </div>
       ))}
     </div>
   );
 }
 
-export default TweetFeed;
+export default TweetFeedProfile;

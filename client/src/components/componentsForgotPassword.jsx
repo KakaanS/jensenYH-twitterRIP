@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { forgotPassword } from "../functions/functionsForgotPassword.js";
+import "../css/Login-signup.css"
 
-const ForgotPassword = () => {
+const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -31,13 +32,14 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="forgotPasswordContainer1">
-      <h1>ForgotPassword</h1>
-      <form className="forgotPasswordForm" onSubmit={handleSubmit}>
+    <div className="auth-form-container">
+      <h2>ForgotPassword</h2>
+      <form className="login-form" onSubmit={handleSubmit}>
         <label className="forgotPasswordLabel">
           Enter your email and nickname to recover your password
         </label>
         <br />
+        <label htmlFor="email">email</label>
         <input
           className={`forgotPasswordInput ${!emailValid ? "invalid" : ""}`}
           type="email"
@@ -48,6 +50,7 @@ const ForgotPassword = () => {
             setEmailValid(true);
           }}
         />
+        <label htmlFor="nickname">nickname</label>
         <input
           className={`forgotPasswordInput ${!nicknameValid ? "invalid" : ""}`}
           type="text"
@@ -58,6 +61,7 @@ const ForgotPassword = () => {
             setNicknameValid(true);
           }}
         />
+        <label htmlFor="password">password</label>
         <input
           className="forgotPasswordInput"
           type="password"
@@ -76,6 +80,7 @@ const ForgotPassword = () => {
         {passwordResetUnsuccessful && (
           <p className="forgotPasswordDisplay">Incorrect email or nickname.</p>
         )}
+        <button className="link-btn" onClick={() => props.onFormSwitch('login')}>You remembered your pasword? Login here.</button>
       </div>
     </div>
   );

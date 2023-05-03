@@ -1,8 +1,9 @@
 import react, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { checkPasswordMatch } from "../functions/functionsSignup.js";
+import '../css/Login-signup.css';
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +26,7 @@ const SignUp = () => {
     }
     setPasswordMatchError(false);
 
-    fetch("http://localhost:3002/user/signup", {
+    fetch("http://localhost:3002/user/signup", {//
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,52 +58,62 @@ const SignUp = () => {
     : "inputPassword";
 
   return (
-    <div className="signUpContainer">
-      <h1>Sign Up</h1>
+    <div className="auth-form-container">
+       <h2>Sign Up</h2>
       <form className="signUpForm" onSubmit={submitHandler}>
+        <label htmlFor="Name">Name</label>
         <input
           type="text"
           placeholder="Name"
+          id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <label htmlFor="nickname">nickname</label>
         <input
           type="text"
           placeholder="nickname"
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
+        <label htmlFor="email">email</label>
+        
         <input
           type="text"
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+
+        <label htmlFor="about">about</label>
         <input
           type="text"
           placeholder="about"
           value={about}
           onChange={(e) => setAbout(e.target.value)}
         />
+        <label htmlFor="employment">employment</label>
         <input
           type="text"
           placeholder="employment"
           value={employment}
           onChange={(e) => setEmployment(e.target.value)}
         />
+        <label htmlFor="hometown">hometown</label>
         <input
           type="text"
           placeholder="hometown"
           value={hometown}
           onChange={(e) => setHometown(e.target.value)}
         />
+        <label htmlFor="webpage">webpage</label>
         <input
           type="text"
           placeholder="webbpage"
           value={webbpage}
           onChange={(e) => setWebbpage(e.target.value)}
         />
-
+        <label htmlFor="password">password</label>
         <input
           className={passwordClassName}
           type="password"
@@ -110,6 +121,7 @@ const SignUp = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <label htmlFor="repeatpassword">repeat password</label>
         <input
           className={passwordClassName}
           type="password"
@@ -125,6 +137,7 @@ const SignUp = () => {
           Sign Up
         </button>
       </form>
+      <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
     </div>
   );
 };

@@ -1,52 +1,60 @@
-import React, { useState, createContext } from "react";
-
-export const SearchContext = createContext();
+import React, { useEffect, useState, createContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [hashtags, setHashtags] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("useEffect");
     const fetchData = async () => {
+      const token = localStorage.getItem("token");
       try {
-        const response = await fetch(
-          `http://localhost:3002/user/profile/${hashtag}/${user}`,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        const response = await fetch(`http://localhost:3002/search`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         const data = await response.json();
-        setSearchResults(data);
+        console.log("SEARCHBARDATA", data);
+        setHashtags(data.allhashtags);
+        setUsers(data.allUsers);
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchData();
   }, []);
 
-  const searchHashtagsAndUsernames = (text) => {
-    const hashtagRegex = /#\w+/g;
-    const usernameRegex = /@\w+/g;
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const hashtags = text.match(hashtagRegex);
-    const usernames = text.match(usernameRegex);
+    if (searchTerm[0] === "#") {
+      console.log("searching for hashtag");
+      console.log("SearchTerm", searchTerm);
+      console.log("hashtags", hashtags);
+    } else if (searchTerm[0] === "@") {
+      const userToFind = searchTerm.slice(1);
 
-    return { hashtags, usernames };
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const { hashtags, usernames } = searchHashtagsAndUsernames(searchTerm);
-    setSearchResults({ hashtags, usernames });
+      const userFind = users.find((user) => user === userToFind);
+      if (userFind) {
+        navigate(`/profile/${userFind}`);
+      }
+    }
   };
 
   return (
-    <SearchContext.Provider value={searchResults}>
+    <div>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleSearch} value={searchTerm} />
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <button type="submit">Search</button>
       </form>
       <ul>
@@ -54,10 +62,8 @@ function SearchBar() {
           <li key={result.id}>{result.name}</li>
         ))}
       </ul>
-    </SearchContext.Provider>
+    </div>
   );
 }
-
-// SearchContext.Consumer - tillhandahåller sökresultatem till andra komponenter
 
 export default SearchBar;

@@ -7,16 +7,20 @@ function TweetFeedProfile({ username }) {
   useEffect(() => {
     const fetchTweets = async () => {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:3002/tweets/fromUser/${username}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      const data = await response.json();
-      setTweets(data.tweets);
+      try {
+        const response = await fetch(
+          `http://localhost:3002/tweets/fromUser/${username}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        const data = await response.json();
+        setTweets(data.tweets);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchTweets();

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState("");
   const [hashtags, setHashtags] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -37,13 +37,24 @@ function SearchBar() {
       console.log("searching for hashtag");
       console.log("SearchTerm", searchTerm);
       console.log("hashtags", hashtags);
+
+      const hashtagFind = hashtags.find((hashtag) => hashtag === searchTerm);
+      if (hashtagFind) {
+        setSearchResults([hashtagFind]);
+      } else {
+        setSearchResults("Hashtag not found");
+      }
     } else if (searchTerm[0] === "@") {
       const userToFind = searchTerm.slice(1);
 
       const userFind = users.find((user) => user === userToFind);
       if (userFind) {
         navigate(`/profile/${userFind}`);
+      } else {
+        setSearchResults("User not found");
       }
+    } else {
+      setSearchResults("You need to start with @ or #");
     }
   };
 
@@ -57,11 +68,8 @@ function SearchBar() {
         />
         <button type="submit">Search</button>
       </form>
-      <ul>
-        {searchResults.map((result) => (
-          <li key={result.id}>{result.name}</li>
-        ))}
-      </ul>
+      <h3>Result:</h3>
+      <p> {searchResults}</p>
     </div>
   );
 }

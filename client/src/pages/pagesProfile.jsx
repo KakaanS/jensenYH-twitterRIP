@@ -6,10 +6,8 @@ const Profile = () => {
   return (
     <div>
       <Sidebar />
-
+      <ProfilePage />
       <Trends />
-
-      <ProfilePage username={"Simon"} />
     </div>
   );
 };

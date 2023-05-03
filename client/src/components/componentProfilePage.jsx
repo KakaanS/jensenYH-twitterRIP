@@ -7,7 +7,6 @@ import followUser from "../functions/functionsFollowUser";
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
-  const [logedInUser, setLogedInUser] = useState(null);
 
   const username = useParams().username;
 
@@ -27,15 +26,12 @@ const ProfilePage = () => {
       console.log("data", data);
       setUser(data.userToSend);
       setIsFollowing(data.isFollowing);
-      setLogedInUser(data.logedInUser);
     };
 
     fetchUser();
   }, [username]);
 
   const followButton = () => {
-    console.log("FOLLOWBUTTON");
-    console.log("logedInUser", logedInUser);
     const response = followUser(username);
     setIsFollowing(response);
   };

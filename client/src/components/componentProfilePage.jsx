@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import "../css/Profilepage.css";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import followUser from "../functions/functionsFollowUser";
 
-const ProfilePage = ({ username }) => {
+import TweetFeedProfile from "./componentProfileTweetFeed";
+
+const ProfilePage = () => {
   const [user, setUser] = useState(null);
-  // const [tweets, setTweets] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
+
+  const username = useParams().username;
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
+      console.log("token", token);
       const response = await fetch(
         `http://localhost:3002/user/profile/${username}`,
         {
@@ -20,37 +25,20 @@ const ProfilePage = ({ username }) => {
         }
       );
       const data = await response.json();
-      console.log(data);
-      setUser(data);
+      console.log("data", data);
+      setUser(data.userToSend);
+      setIsFollowing(data.isFollowing);
     };
 
     fetchUser();
   }, [username]);
 
-  // useEffect(() => {
-  //   const fetchTweets = async () => {
-  //     const response = await fetch(`/api/users/${username}/tweets`);
-  //     const data = await response.json();
-  //     setTweets(data);
-  //   };
-
-  //   fetchTweets();
-  // }, [username]);
-
-  const handleFollow = async () => {
-    try {
-      const response = await fetch(`/api/users/${username}/follow`, {
-        method: "POST",
-      });
-      const data = await response.json();
-      setIsFollowing(data.isFollowing);
-    } catch (error) {
-      console.error(error);
-    }
+  const followButton = () => {
+    const response = followUser(username);
+    setIsFollowing(response);
   };
 
   const {
-    background_image,
     profile_image,
     name,
     tweets,
@@ -63,32 +51,30 @@ const ProfilePage = ({ username }) => {
     followers,
     following,
   } = user || {};
-  // console.log("followers", followers);
-  // const followersCount = followers.length;
-  // console.log("followersCount", followersCount);
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="profile-page">
-      {/* <Link to="/">Back</Link> */}
-      <img src={background_image} alt="Background image"></img>
-      <img src={profile_image} alt="Profile image"></img>
-      <h2>{name}</h2>
-      <button className="follow-button" onClick={handleFollow}>
-        {isFollowing ? "Following" : "Follow"}
-      </button>
-      <h3>@{nickname}</h3>
-      <h4>Tweets:{tweets.length}</h4>
-      <p>About:{about}</p>
-      <p>Employment:{employment}</p>
-      <p>Hometown:{hometown}</p>
-      <p>Webbpage:{webbpage}</p>
-      <p>Joined: {date}</p>
-      <p>{followers.length}Followers</p>
-      <p>{following.length}Following</p>
-      <ul>
-        {/* {tweets.map((tweet) => (
-          <li key={tweet.id_str}>{tweet.text}</li>
-        ))} */}
-      </ul>
+    <div className="profile-middle">
+      <div className="profile-page">
+        <img src={profile_image} alt="Profile image"></img>
+        <h2>{name}</h2>
+        <button className="follow-button" onClick={followButton}>
+          {isFollowing ? "Following" : "Follow"}
+        </button>
+        <h3>@{nickname}</h3>
+        <h4>Tweets:{tweets.length}</h4>
+        <p>About:{about}</p>
+        <p>Employment:{employment}</p>
+        <p>Hometown:{hometown}</p>
+        <p>Webbpage:{webbpage}</p>
+        <p>Joined: {date}</p>
+        <p>{followers.length}Followers</p>
+        <p>{following.length}Following</p>
+      </div>
+      <TweetFeedProfile username={username} />
     </div>
   );
 };

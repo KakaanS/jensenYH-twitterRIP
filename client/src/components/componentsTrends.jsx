@@ -4,7 +4,9 @@ import { TrendsContext } from "../context/TrendsContext.jsx";
 function Trends() {
   const [hashtags] = useContext(TrendsContext);
 
-  console.log("hashtags222222", hashtags);
+  if (!hashtags) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>

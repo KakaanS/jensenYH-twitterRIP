@@ -1,16 +1,19 @@
 import Sidebar from "../components/componentsSidebar";
-import Feed from "../components/componentsFeed";
+import HomeMiddle from "../components/componentsHomeMiddle";
 import Trends from "../components/componentsTrends";
 import Logout from "../components/componentsLogout";
+
+import { TrendsProvider } from "../context/TrendsContext";
 import "../css/main.css";
 
-//<Trends />
 const Home = () => {
   return (
     <div class="app">
       <Sidebar />
-      <Feed />
-      <Trends />
+      <HomeMiddle />
+      <TrendsProvider>
+        <Trends />
+      </TrendsProvider>
       <Logout />
     </div>
   );

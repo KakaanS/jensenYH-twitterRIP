@@ -1,0 +1,16 @@
+.profile-page {
+  background-color: grey;
+  padding: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.follow-button {
+  background-color: rgb(76, 75, 75);
+}

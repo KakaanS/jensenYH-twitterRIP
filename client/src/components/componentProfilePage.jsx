@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import "../css/Profilepage.css";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import followUser from "../functions/functionsFollowUser";
 
-const ProfilePage = ({ username }) => {
+const ProfilePage = () => {
   const [user, setUser] = useState(null);
-  const [isFollowing, _setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [logedInUser, setLogedInUser] = useState(null);
+
+  const username = useParams().username;
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
+      console.log("token", token);
       const response = await fetch(
         `http://localhost:3002/user/profile/${username}`,
         {
@@ -20,15 +24,23 @@ const ProfilePage = ({ username }) => {
         }
       );
       const data = await response.json();
-      console.log(data);
-      setUser(data);
+      console.log("data", data);
+      setUser(data.userToSend);
+      setIsFollowing(data.isFollowing);
+      setLogedInUser(data.logedInUser);
     };
 
     fetchUser();
   }, [username]);
 
+  const followButton = () => {
+    console.log("FOLLOWBUTTON");
+    console.log("logedInUser", logedInUser);
+    const response = followUser(username);
+    setIsFollowing(response);
+  };
+
   const {
-    background_image,
     profile_image,
     name,
     tweets,
@@ -42,13 +54,15 @@ const ProfilePage = ({ username }) => {
     following,
   } = user || {};
 
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="profile-page">
-      <Link to="/">Back</Link>
-      <img src={background_image} alt="Background image"></img>
       <img src={profile_image} alt="Profile image"></img>
       <h2>{name}</h2>
-      <button className="follow-button" onClick={() => followUser(nickname)}>
+      <button className="follow-button" onClick={followButton}>
         {isFollowing ? "Following" : "Follow"}
       </button>
       <h3>@{nickname}</h3>

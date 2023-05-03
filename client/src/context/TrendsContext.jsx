@@ -18,15 +18,12 @@ export const TrendsProvider = (props) => {
       .then((data) => {
         const JSON = { ...data };
         const hashtags = JSON.topHashtags;
-        console.log("hashtags", hashtags);
         setHashtags(hashtags);
       })
       .catch((error) => {
         throw new Error(error.message);
       });
   }, [token]);
-
-  console.log("hashtags", hashtags);
 
   return (
     <TrendsContext.Provider value={[hashtags, setHashtags]}>

@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { TrendsContextProvider } from "./context/TrendsContext";
 
 import Start from "./pages/pagesStart";
 import Home from "./pages/pagesHome";
@@ -26,13 +25,11 @@ function AuthenticatedRoutes() {
 
   return (
     <>
-      <TrendsContextProvider>
-        <Routes>
-          <Route path="/" element={<Start />}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/profile/:id" element={<Profile />}></Route>
-        </Routes>
-      </TrendsContextProvider>
+      <Routes>
+        <Route path="/" element={<Start />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/profile/:id" element={<Profile />}></Route>
+      </Routes>
     </>
   );
 }

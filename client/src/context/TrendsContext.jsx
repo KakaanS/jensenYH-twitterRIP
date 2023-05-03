@@ -1,8 +1,8 @@
-import react, { createContext, useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 
 export const TrendsContext = createContext();
 
-export const TrendsContextProvider = ({ children }) => {
+export const TrendsProvider = (props) => {
   const [hashtags, setHashtags] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -12,21 +12,22 @@ export const TrendsContextProvider = ({ children }) => {
         Authorization: "Bearer " + token,
       },
     })
-      .then((response) => response.json())
-      .then((data) => setHashtags(data))
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        const JSON = { ...data };
+        const hashtags = JSON.topHashtags;
+        setHashtags(hashtags);
+      })
       .catch((error) => {
         throw new Error(error.message);
       });
   }, [token]);
 
-  const contextValues = {
-    hashtags,
-    setHashtags,
-  };
-
   return (
-    <TrendsContext.Provider value={contextValues}>
-      {children}
+    <TrendsContext.Provider value={[hashtags, setHashtags]}>
+      {props.children}
     </TrendsContext.Provider>
   );
 };

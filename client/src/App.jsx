@@ -1,11 +1,12 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { TrendsContextProvider } from "./context/TrendsContext";
 
 import Start from "./pages/pagesStart";
 import Home from "./pages/pagesHome";
 import Profile from "./pages/pagesProfile";
 import { checkAuth } from "./functions/functionsToken";
+
+import { TrendsProvider } from "./context/TrendsContext";
 
 //CSS import
 import "./css/signUp.css";
@@ -26,13 +27,13 @@ function AuthenticatedRoutes() {
 
   return (
     <>
-      <TrendsContextProvider>
+      <TrendsProvider>
         <Routes>
           <Route path="/" element={<Start />}></Route>
           <Route path="/home" element={<Home />}></Route>
-          <Route path="/profile/:id" element={<Profile />}></Route>
+          <Route path="/profile/:username" element={<Profile />}></Route>
         </Routes>
-      </TrendsContextProvider>
+      </TrendsProvider>
     </>
   );
 }

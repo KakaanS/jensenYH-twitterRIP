@@ -8,7 +8,9 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log('handleLogin')
     login(email, password)
       .then((token) => {
         localStorage.setItem("token", token);

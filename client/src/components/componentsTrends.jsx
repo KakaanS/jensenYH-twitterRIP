@@ -12,7 +12,7 @@ function Trends() {
   }
 
   return (
-    <div className="trends">
+    <div className="trends" id="trends-id">
       <h2 className="trends-div">What's happening</h2>
       {hashtags.map((hashtag) => (
         <div key={hashtag._id} className="hashtag">

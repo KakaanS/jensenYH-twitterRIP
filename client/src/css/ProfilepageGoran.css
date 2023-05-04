@@ -67,12 +67,16 @@
 
   .paragrafs {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   }
+
+  
   .paragrafs p {
+    
     margin-right: 10px;
     margin-top: 20px;
+    margin-bottom: 30px;
      
   }
   

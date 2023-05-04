@@ -6,11 +6,15 @@ import "../css/profilepageGoran.css"
 const Profile = () => {
   return (
     <div className="app">
-      <Sidebar />
       <div>
-      <ProfilePage />
+      <Sidebar />
       <Trends />
       </div>
+      
+      
+      <ProfilePage />
+      
+      
     </div>
   );
 };

@@ -3,8 +3,15 @@ import "../css/ProfilepageGoran.css";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import followUser from "../functions/functionsFollowUser";
-
 import TweetFeedProfile from "./componentProfileTweetFeed";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
+import LocationCityOutlinedIcon from '@mui/icons-material/LocationCityOutlined';
+import HttpOutlinedIcon from '@mui/icons-material/HttpOutlined';
+import QueryBuilderOutlinedIcon from '@mui/icons-material/QueryBuilderOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -80,13 +87,13 @@ const ProfilePage = () => {
       
           </div> 
           <div className="paragrafs">
-           <p>About:{about}</p>
-           <p>Employment:{employment}</p>
-           <p>Hometown:{hometown}</p>
-           <p>Webbpage:{webbpage}</p>
-           <p>Joined: {date}</p>
-           <p>{followers.length}Followers</p>
-           <p>{following.length}Following</p>
+          <p><InfoOutlinedIcon /> {about}</p>
+           <p><WorkOutlineOutlinedIcon/>{employment}</p>
+           <p>< LocationCityOutlinedIcon/>{hometown}</p>
+           <p><HttpOutlinedIcon/>{webbpage}</p>
+           <p><QueryBuilderOutlinedIcon/> {date}</p>
+           <p><GroupOutlinedIcon/>{followers.length}</p>
+           <p><GroupAddOutlinedIcon/>{following.length}</p>
           </div>
 
         </div>

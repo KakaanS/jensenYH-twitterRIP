@@ -1,8 +1,9 @@
 import react, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
+import { Modal} from "react-bootstrap";//izbrisao Button
 import removeToken from "../functions/functionsLogout.js";
 import "../css/modalBackground.css";
+import { Button } from '@mui/material';
 
 const LogoutModal = ({ show, closeCallback, handleLogoutCallback }) => {
   return (
@@ -54,8 +55,8 @@ const Logout = () => {
     console.log("logout");
   };
   return (
-    <div>
-      <Button variant="primary" onClick={handleShow}>
+    <div className="LogoutButton-div">
+      <Button className="LogoutButton" variant="primary" onClick={handleShow}>
         Logout
       </Button>
       <LogoutModal

@@ -1,0 +1,84 @@
+.profile-middle-div{
+  display: flex;
+  flex-direction: column;
+  flex: 0.8;
+  margin-left: 20px;
+
+}
+.profile-page-div {
+  border-bottom: solid var(--twitter-background);
+}
+
+.profileImage-div{
+    background-image: linear-gradient(79deg, #045bac, #4da6ff, #b3d5f7);
+    height: 200px;
+    margin-bottom: 100px;
+    min-width: 800px;
+    border-radius: 10px;
+  
+  }
+.profileImg {
+    
+    margin-top: 130px;
+    margin-left: 10%;
+    border: solid var(--twitter-background);
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 150px;
+    max-width: 150px;
+    border-radius: 50%;
+    background: white;
+
+  }
+  
+  .profile-name{
+    padding: 0px;
+    margin-top: -60px;
+    margin-right: 900px;
+  }
+
+  .follow-button{
+    
+    color: black;
+    background: var(--twitter-color);
+    border: solid var(--twitter-color);
+    padding: 5px 50px;
+    margin-left: 600px;
+    
+   
+   
+  }
+  .info-div{
+    position: relative;
+    display: inline;
+    margin-bottom: 10px;
+  }
+ 
+  
+  .h3{
+    display: inline-block;
+    margin-top: -10px;
+
+    margin-left: 0px;
+    padding: 0px 30px;
+   
+    
+  }
+
+  .paragrafs {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .paragrafs p {
+    margin-right: 10px;
+    margin-top: 20px;
+     
+  }
+  
+  
+ 
+  
+
+  
+  

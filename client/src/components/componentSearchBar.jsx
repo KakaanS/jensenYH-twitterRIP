@@ -1,5 +1,11 @@
 import React, { useEffect, useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from '@mui/icons-material/Search';
+import "../css/SearchBar.css"
+
+import { Modal, Button } from "react-bootstrap";
+import removeToken from "../functions/functionsLogout.js";
+import "../css/modalBackground.css";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,19 +65,96 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div className="searchbar">
       <form onSubmit={handleSubmit}>
-        <input
+
+      <div className="searchBar-button-text">
+
+      <SearchIcon Icon={SearchIcon} className="sidebar--searchIcon" />
+
+      <button className="searchBar-button" type="submit">Search</button>
+      </div>
+     
+        <input 
+          className="search-div-input"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="submit">Search</button>
+       
       </form>
-      <h3>Result:</h3>
+      <h3 className="searchBar-result">Result:</h3>
       <p> {searchResults}</p>
     </div>
   );
 }
 
-export default SearchBar;
+
+
+const LogoutModal = ({ show, closeCallback, handleLogoutCallback }) => {
+  return (
+    <div>
+      {show && (
+        <div className="modalContainer">
+          <div className="modalBackground"></div>
+          <Modal className="modalLogout" show={show} onHide={closeCallback}>
+            <Modal.Header>
+              <Modal.Title>
+                <h4>Confirm logout</h4>
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to logout?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={closeCallback}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={handleLogoutCallback}>
+                Logout
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const Logout = () => {
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    setShow(false);
+    console.log("handleClose");
+  };
+  const handleShow = () => {
+    setShow(true);
+    console.log("handleShow");
+  };
+
+  const handleLogoutConfirm = () => {
+    /* handleLogout(); */
+    removeToken();
+    navigate("/");
+    handleClose();
+
+    console.log("logout");
+  };
+  return (
+    <div>
+      <Button variant="primary" onClick={handleShow}>
+        Logout
+      </Button>
+      <LogoutModal
+        handleLogoutCallback={handleLogoutConfirm}
+        show={show}
+        closeCallback={handleClose}
+      />
+    </div>
+  );
+};
+
+export default ( Logout , SearchBar );
+
+
+

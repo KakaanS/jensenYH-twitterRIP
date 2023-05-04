@@ -19,11 +19,9 @@ function Sidebar() {
 
       <SidebarOptions active Icon={HomeIcon} text="Home" />
       <SidebarOptions Icon={Person2Icon} text="Profile" />
-      {/*<SidebarOptions Icon={SearchIcon} text="Explore"/>*/}
       <SearchBar />
 
-      {/*Button*/}
-      {/*<Button>Tweet</Button>*/}
+    
     </div>
   );
 }

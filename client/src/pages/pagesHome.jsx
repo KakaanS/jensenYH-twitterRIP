@@ -10,8 +10,13 @@ const Home = () => {
     <div class="app">
       <Sidebar />
       <HomeMiddle />
-      <Trends />
+
+      <div>
       <Logout />
+      <Trends />
+      
+      </div>
+      
     </div>
   );
 };

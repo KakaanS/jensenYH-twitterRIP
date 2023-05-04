@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, createContext } from "react";
 import "../css/Post.css";
 import { Avatar } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import FeedContext from "../context/FeedContext";
+import { FeedContext } from "../context/FeedContext.jsx";
 
 function Feed() {
   const [{ allTweets, loading }] = useContext(FeedContext);

@@ -6,7 +6,7 @@ import Home from "./pages/pagesHome";
 import Profile from "./pages/pagesProfile";
 import { checkAuth } from "./functions/functionsToken";
 
-import { TrendsProvider } from "./context/TrendsContext";
+import { CombinedContextProvider } from "./context/CombinedContextProvider";
 
 //CSS import
 import "./css/signUp.css";
@@ -27,13 +27,13 @@ function AuthenticatedRoutes() {
 
   return (
     <>
-      <TrendsProvider>
+      <CombinedContextProvider>
         <Routes>
           <Route path="/" element={<Start />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/profile/:username" element={<Profile />}></Route>
         </Routes>
-      </TrendsProvider>
+      </CombinedContextProvider>
     </>
   );
 }

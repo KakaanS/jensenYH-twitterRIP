@@ -2,11 +2,13 @@ import React, { useState, useContext } from "react";
 import "../css/TweetBox.css";
 import { Avatar, Button } from "@mui/material";
 import sendTweet from "../functions/functionsSendTweet";
-import FeedContext from "../context/FeedContext";
+import { FeedContext } from "../context/FeedContext";
+import { TrendsContext } from "../context/TrendsContext";
 
 function TweetBoxForSendingTweets() {
   const [tweetsState, setTweetsState, reload, setReload] =
     useContext(FeedContext);
+
   const [tweetMessage, setTweetMessage] = useState("");
 
   const handleSendTweet = async (e) => {

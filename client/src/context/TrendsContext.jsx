@@ -1,10 +1,12 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
+import { FeedContext } from "./FeedContext.jsx";
 
 export const TrendsContext = createContext();
 
 export const TrendsProvider = (props) => {
   const [hashtags, setHashtags] = useState([]);
   const token = localStorage.getItem("token");
+  const [tweetState] = useContext(FeedContext);
 
   useEffect(() => {
     fetch("http://localhost:3002/trending/hashtags", {
@@ -23,7 +25,7 @@ export const TrendsProvider = (props) => {
       .catch((error) => {
         throw new Error(error.message);
       });
-  }, [token]);
+  }, [token, tweetState]);
 
   return (
     <TrendsContext.Provider value={[hashtags, setHashtags]}>
@@ -31,3 +33,5 @@ export const TrendsProvider = (props) => {
     </TrendsContext.Provider>
   );
 };
+
+export default TrendsContext;

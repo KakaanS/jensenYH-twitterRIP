@@ -1,12 +1,15 @@
 import React from "react";
 import { FeedProvider } from "./FeedContext";
 import { TrendsProvider } from "./TrendsContext";
+import { UserLoggedInProvider } from "./UserLoggedInContext";
 
 export const CombinedContextProvider = ({ children }) => {
   return (
-    <FeedProvider>
-      <TrendsProvider>{children}</TrendsProvider>
-    </FeedProvider>
+    <UserLoggedInProvider>
+      <FeedProvider>
+        <TrendsProvider>{children}</TrendsProvider>
+      </FeedProvider>
+    </UserLoggedInProvider>
   );
 };
 

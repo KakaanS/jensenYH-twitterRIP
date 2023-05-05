@@ -20,5 +20,10 @@ async function checkAuth() {
     return false;
   }
 }
+// add functionality to context "UserLoggedInContext" so that we can use it in component ProfileButton
+// And it gives us the ability to click profileButton and get to "my profile".
+
+export const isUserLoggedIn = checkAuth();
+export const UserLoggedInContext = React.createContext(isUserLoggedIn);
 
 export { checkAuth };

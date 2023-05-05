@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Sidebar from "../components/componentsSidebar";
 import Trends from "../components/componentsTrends";
 import Logout from "../components/componentsLogout";

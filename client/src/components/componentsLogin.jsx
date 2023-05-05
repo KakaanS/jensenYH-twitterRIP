@@ -24,7 +24,7 @@ function Login(props) {
 
   return (
     <div className="auth-form-container">
-      <h2>Login</h2>
+      <h2 className="h2-login">Login</h2>
     <form className="login-form">
     <label htmlFor="email">email</label>
       <input

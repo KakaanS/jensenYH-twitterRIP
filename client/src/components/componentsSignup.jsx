@@ -46,9 +46,7 @@ const SignUp = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         navigate("/");
-        console.log("user redirected to login");
       })
       .catch((error) => {
         console.error(error);
@@ -61,8 +59,7 @@ const SignUp = (props) => {
 
   return (
     <div className="auth-form-container">
-
-       <h2 className="h2-login">Sign Up</h2>
+      <h2 className="h2-login">Sign Up</h2>
 
       <form className="signUpForm" onSubmit={submitHandler}>
         <label htmlFor="Name">Name</label>

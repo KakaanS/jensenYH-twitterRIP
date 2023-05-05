@@ -39,11 +39,9 @@ const Logout = () => {
 
   const handleClose = () => {
     setShow(false);
-    console.log("handleClose");
   };
   const handleShow = () => {
     setShow(true);
-    console.log("handleShow");
   };
 
   const handleLogoutConfirm = () => {
@@ -51,8 +49,6 @@ const Logout = () => {
     removeToken();
     navigate("/");
     handleClose();
-
-    console.log("logout");
   };
   return (
     <div className="LogoutButton-div">

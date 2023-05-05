@@ -13,7 +13,6 @@ function SearchBar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("useEffect");
     const fetchData = async () => {
       const token = localStorage.getItem("token");
       try {
@@ -23,7 +22,6 @@ function SearchBar() {
           },
         });
         const data = await response.json();
-        console.log("SEARCHBARDATA", data);
         setHashtags(data.allhashtags);
         setUsers(data.allUsers);
       } catch (error) {
@@ -34,14 +32,9 @@ function SearchBar() {
   }, []);
 
   const handleSubmit = (e) => {
-    console.log("handleSubmit");
     e.preventDefault();
 
     if (searchTerm[0] === "#") {
-      console.log("searching for hashtag");
-      console.log("SearchTerm", searchTerm);
-      console.log("hashtags", hashtags);
-
       const hashtagFind = hashtags.find((hashtag) => hashtag === searchTerm);
       if (hashtagFind) {
         setSearchResults([hashtagFind]);

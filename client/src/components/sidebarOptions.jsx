@@ -1,20 +1,15 @@
-
 import React, { useContext } from "react";
 import "../css/sidebarOption.css";
 import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 import { useNavigate } from "react-router-dom";
 
-const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
-    isUserLoggedInContext
-  );
-
-
 import HomeIcon from "@mui/icons-material/Home";
 import Person2Icon from "@mui/icons-material/Person2";
 
-
 function SidebarOptions({ active, text }) {
-
+  const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
+    isUserLoggedInContext
+  );
   const navigate = useNavigate();
 
   const handleClick = () => {

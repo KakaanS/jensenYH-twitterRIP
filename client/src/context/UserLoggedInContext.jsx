@@ -9,7 +9,6 @@ export const UserLoggedInProvider = (props) => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
-  console.log("token from context", token);
 
   useEffect(() => {
     fetch("http://localhost:3002/user/JWT", {
@@ -26,7 +25,6 @@ export const UserLoggedInProvider = (props) => {
       .catch((err) => {
         setUserLoggedIn(false);
       });
-    console.log("userLoggedIn from context", userLoggedIn);
   }, [token]);
 
   useEffect(() => {

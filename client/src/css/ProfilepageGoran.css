@@ -41,12 +41,14 @@
   }
 
   .follow-button{
-    
-    color: black;
+
+    display: flex; 
+    color: white;
     background: var(--twitter-color);
     border: solid var(--twitter-color);
-    padding: 5px 50px;
-    margin-left: 600px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    
     
    
    
@@ -55,6 +57,7 @@
     position: relative;
     display: inline;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
  
   
@@ -85,6 +88,11 @@
 
   .profile-middle-div::-webkit-scrollbar{
     display: none;
+  }
+
+  .nickname-tweets-div{
+   
+    padding-top: 15px;
   }
   
   

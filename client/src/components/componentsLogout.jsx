@@ -1,9 +1,9 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal} from "react-bootstrap";//izbrisao Button
+import { Modal } from "react-bootstrap"; //izbrisao Button
 import removeToken from "../functions/functionsLogout.js";
 import "../css/modalBackground.css";
-import { Button } from '@mui/material';
+import { Button } from "@mui/material";
 
 const LogoutModal = ({ show, closeCallback, handleLogoutCallback }) => {
   return (

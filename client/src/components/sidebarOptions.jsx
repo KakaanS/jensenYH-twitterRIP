@@ -1,9 +1,10 @@
 import React from "react";
-import "../css/sidebarOption.css";
+import HomeIcon from "@mui/icons-material/Home";
+import Person2Icon from "@mui/icons-material/Person2";
 
 import { useNavigate } from "react-router-dom";
 
-function SidebarOptions({ active, text, Icon }) {
+function SidebarOptions({ active, text }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -14,12 +15,20 @@ function SidebarOptions({ active, text, Icon }) {
     }
   };
 
+  const chooseIcon = () => {
+    if (text === "Home") {
+      return <HomeIcon />;
+    } else if (text === "Profile") {
+      return <Person2Icon />;
+    }
+  };
+
   return (
     <div
       className={`sidebarOption ${active && "sidebarOptions--active"}`}
       onClick={handleClick}
     >
-      <Icon />
+      {chooseIcon()}
       <h2>{text}</h2>
     </div>
   );

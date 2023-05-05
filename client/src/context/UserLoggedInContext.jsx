@@ -1,12 +1,15 @@
 import React, { useState, useEffect, createContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const isUserLoggedInContext = createContext();
 
 export const UserLoggedInProvider = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userNickname, setUserNickname] = useState("");
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
+  console.log("token from context", token);
 
   useEffect(() => {
     fetch("http://localhost:3002/user/JWT", {
@@ -15,17 +18,25 @@ export const UserLoggedInProvider = (props) => {
       },
     })
       .then((res) => {
-        console.log("response", res);
         return res.json();
       })
       .then((data) => {
         setUserNickname(data.decoded.nickname);
-        setUserLoggedIn(true);
       })
       .catch((err) => {
         setUserLoggedIn(false);
       });
+    console.log("userLoggedIn from context", userLoggedIn);
   }, [token]);
+
+  useEffect(() => {
+    if (userNickname !== "") {
+      setUserLoggedIn(true);
+    } else {
+      setUserLoggedIn(false);
+      navigate("/");
+    }
+  }, [userNickname]);
 
   return (
     <isUserLoggedInContext.Provider

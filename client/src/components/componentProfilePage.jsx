@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import "../css/Profilepage.css";
+import "../css/ProfilepageGoran.css";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import followUser from "../functions/functionsFollowUser";
-
 import TweetFeedProfile from "./componentProfileTweetFeed";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
+import LocationCityOutlinedIcon from '@mui/icons-material/LocationCityOutlined';
+import HttpOutlinedIcon from '@mui/icons-material/HttpOutlined';
+import QueryBuilderOutlinedIcon from '@mui/icons-material/QueryBuilderOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -57,23 +64,41 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile-middle">
-      <div className="profile-page">
-        <img src={profile_image} alt="Profile image"></img>
-        <h2>{name}</h2>
-        <button className="follow-button" onClick={followButton}>
+    <div className="profile-middle-div">
+      <div className="profile-page-div">
+
+        <div className="profileImage-div">
+          <img className="profileImg" src= {profile_image} alt="Profile image"></img>  
+          <h2 className="profile-name">{name}</h2>
+          <button className="follow-button" onClick={followButton}>
           {isFollowing ? "Following" : "Follow"}
-        </button>
-        <h3>@{nickname}</h3>
-        <h4>Tweets:{tweets.length}</h4>
-        <p>About:{about}</p>
-        <p>Employment:{employment}</p>
-        <p>Hometown:{hometown}</p>
-        <p>Webbpage:{webbpage}</p>
-        <p>Joined: {date}</p>
-        <p>{followers.length}Followers</p>
-        <p>{following.length}Following</p>
-      </div>
+          </button>
+        </div>
+        
+        
+        
+
+        <div className="info-div">
+
+          <div className="nickname-tweets-div">
+
+           <h3 className="h3">@{nickname}</h3>
+           <h4 className="h3">Tweets:{tweets.length}</h4>
+      
+          </div> 
+          <div className="paragrafs">
+          <p><InfoOutlinedIcon /> {about}</p>
+           <p><WorkOutlineOutlinedIcon/>{employment}</p>
+           <p>< LocationCityOutlinedIcon/>{hometown}</p>
+           <p><HttpOutlinedIcon/>{webbpage}</p>
+           <p><QueryBuilderOutlinedIcon/> {date}</p>
+           <p><GroupOutlinedIcon/>{followers.length}</p>
+           <p><GroupAddOutlinedIcon/>{following.length}</p>
+          </div>
+
+        </div>
+        
+        </div>
       <TweetFeedProfile username={username} />
     </div>
   );

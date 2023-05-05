@@ -1,12 +1,20 @@
+
 import React, { useContext } from "react";
 import "../css/sidebarOption.css";
 import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 import { useNavigate } from "react-router-dom";
 
-function SidebarOptions({ active, text, Icon }) {
-  const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
+const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
     isUserLoggedInContext
   );
+
+
+import HomeIcon from "@mui/icons-material/Home";
+import Person2Icon from "@mui/icons-material/Person2";
+
+
+function SidebarOptions({ active, text }) {
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -17,12 +25,20 @@ function SidebarOptions({ active, text, Icon }) {
     }
   };
 
+  const chooseIcon = () => {
+    if (text === "Home") {
+      return <HomeIcon />;
+    } else if (text === "Profile") {
+      return <Person2Icon />;
+    }
+  };
+
   return (
     <div
       className={`sidebarOption ${active && "sidebarOptions--active"}`}
       onClick={handleClick}
     >
-      <Icon />
+      {chooseIcon()}
       <h2>{text}</h2>
     </div>
   );

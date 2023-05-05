@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/componentsSidebar";
 import Trends from "../components/componentsTrends";
-import Logout from "../components/componentsLogout";
 import TweetBoxForSendingTweets from "../components/componentTweetBoxForSendingTweets";
 import Feed from "../components/componentFeed";
 
 //CSS
 import "../css/Feed.css";
-
 import "../css/main.css";
 
 const Home = () => {
@@ -22,7 +20,6 @@ const Home = () => {
         <Feed />
       </div>
       <Trends />
-      <Logout />
     </div>
   );
 };

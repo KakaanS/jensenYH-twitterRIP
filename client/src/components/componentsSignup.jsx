@@ -61,7 +61,9 @@ const SignUp = (props) => {
 
   return (
     <div className="auth-form-container">
-      <h2>Sign Up</h2>
+
+       <h2 className="h2-login">Sign Up</h2>
+
       <form className="signUpForm" onSubmit={submitHandler}>
         <label htmlFor="Name">Name</label>
         <input

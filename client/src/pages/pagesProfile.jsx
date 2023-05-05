@@ -1,13 +1,20 @@
 import Trends from "../components/componentsTrends";
 import Sidebar from "../components/componentsSidebar";
 import ProfilePage from "../components/componentProfilePage";
+import "../css/profilepageGoran.css"
 
 const Profile = () => {
   return (
-    <div>
+    <div className="app">
+      <div>
       <Sidebar />
-      <ProfilePage />
       <Trends />
+      </div>
+      
+      
+      <ProfilePage />
+      
+      
     </div>
   );
 };

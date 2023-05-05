@@ -3,7 +3,6 @@ import "../css/TweetBox.css";
 import { Avatar, Button } from "@mui/material";
 import sendTweet from "../functions/functionsSendTweet";
 import { FeedContext } from "../context/FeedContext";
-import { TrendsContext } from "../context/TrendsContext";
 
 function TweetBoxForSendingTweets() {
   const [tweetsState, setTweetsState, reload, setReload] =

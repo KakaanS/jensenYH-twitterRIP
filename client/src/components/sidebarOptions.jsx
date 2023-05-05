@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../css/sidebarOption.css";
-
+import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 function SidebarOptions({ active, text, Icon }) {
+  const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
+    isUserLoggedInContext
+  );
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (text === "Profile") {
-      navigate(`/profile/Simon`);
+    if (text === "Profile" && userLoggedIn) {
+      navigate(`/profile/${userNickname}`);
     } else if (text === "Home") {
       navigate(`/home`);
     }

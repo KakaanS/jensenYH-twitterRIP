@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 
-const isUserLoggedInContext = createContext();
+export const isUserLoggedInContext = createContext();
 
 export const UserLoggedInProvider = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -9,16 +9,17 @@ export const UserLoggedInProvider = (props) => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3002/users/jwt", {
+    fetch("http://localhost:3002/user/JWT", {
       headers: {
         Authorization: "Bearer " + token,
       },
     })
       .then((res) => {
+        console.log("response", res);
         return res.json();
       })
       .then((data) => {
-        setUserNickname(data.nickname);
+        setUserNickname(data.decoded.nickname);
         setUserLoggedIn(true);
       })
       .catch((err) => {
@@ -34,5 +35,3 @@ export const UserLoggedInProvider = (props) => {
     </isUserLoggedInContext.Provider>
   );
 };
-
-export default isUserLoggedInContext;

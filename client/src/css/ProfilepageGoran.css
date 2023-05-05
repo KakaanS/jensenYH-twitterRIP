@@ -3,6 +3,7 @@
   flex-direction: column;
   flex: 0.8;
   margin-left: 20px;
+  overflow:scroll
 
 }
 .profile-page-div {
@@ -73,11 +74,15 @@
 
   
   .paragrafs p {
-    
-    margin-right: 10px;
-    margin-top: 20px;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-top: 10px;
     margin-bottom: 30px;
      
+  }
+
+  .profile-middle-div::-webkit-scrollbar{
+    display: none;
   }
   
   

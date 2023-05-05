@@ -1,23 +1,27 @@
 .feed{
     flex: 0.5;
     border-right: 1px solid var(--twitter-background);
-    min-width: fit-content;
+    min-width: 600px;
     overflow: scroll;
+    
 
 }
 
 .feed__header {
     position: sticky;
     top: 0;
-    background-color: azure;
+    background-image: linear-gradient(79deg, #045bac, #4da6ff, #b3d5f7);
     z-index: 100;
     border: 1px solid var(--twitter-background);
     padding: 15px 20px;
+    height: 100px;
 }
 
 .feed__header > h2 {
     font-size: 20px;
     font-weight: 800;
+    color: white;
+   
 
 }
 

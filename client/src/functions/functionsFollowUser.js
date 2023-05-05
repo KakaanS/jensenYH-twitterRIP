@@ -1,7 +1,4 @@
 const followUser = async (nickname) => {
-  console.log("followUser function called");
-  console.log("nickname: ", nickname);
-
   try {
     const token = localStorage.getItem("token");
     const response = await fetch("http://localhost:3002/user/follow", {
@@ -14,15 +11,11 @@ const followUser = async (nickname) => {
       body: JSON.stringify({ nickname: nickname }),
     });
 
-    console.log("response", response);
     return true;
-
-
   } catch (error) {
     console.error(error);
     return false;
   }
 };
-
 
 export default followUser;

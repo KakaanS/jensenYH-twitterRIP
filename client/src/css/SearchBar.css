@@ -1,0 +1,63 @@
+.searchbar {
+  
+    flex:0.2;
+    min-width: 250px;
+    margin-top: 5px;
+    padding-left: 8px;
+    padding-right: 20px;
+}
+
+.searchBar-button-text{
+    display: flex;
+}
+
+.searchBar-button-text:hover{
+    background-color: rgb(227, 250, 250);
+    border-radius: 30px;
+    color: var(--twitter-color);
+    transition: color 100ms ease-out;
+}
+
+.search-div-input{
+    display: flex;
+    align-items: center;
+    background-color: var(--twitter-background);
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+
+.MuiSvgIcon-root {
+    padding: 18px;
+    padding-right: 10px;
+
+}
+
+.searchBar-button{
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 0px;
+    padding-top: 0px;
+    color: black;
+    margin-top: 0%;
+    padding-top: 5px;
+}
+.searchBar-button:hover{
+    background-color: rgb(227, 250, 250);
+    
+    color: var(--twitter-color);
+    transition: color 100ms ease-out;
+}
+
+.sidebar--searchIcon{
+    font-size: 30px !important;
+}
+
+.searchBar-result{
+    margin-top: 20px;
+
+}
+
+

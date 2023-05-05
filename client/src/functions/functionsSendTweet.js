@@ -13,7 +13,6 @@ const sendTweet = async (tweetMessage) => {
     });
 
     const data = await response.json();
-    console.log(data);
     return true;
   } catch (error) {
     console.error(error);

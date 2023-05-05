@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
-import { TrendsContext } from "../context/TrendsContext.jsx";
+import { TrendsContext } from "../context/TrendsContext";
+import "../css/Trends.css";
+
 
 function Trends() {
-  const [hashtags] = useContext(TrendsContext);
+  const [hashtags, setHashtags] = useContext(TrendsContext);
 
   if (!hashtags) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>Trending Shit</h1>
+    <div className="trends" id="trends-id">
+      <h2 className="trends-div">Trends:</h2>
       {hashtags.map((hashtag) => (
         <div key={hashtag._id} className="hashtag">
           <h3>{hashtag.hashtag}</h3>

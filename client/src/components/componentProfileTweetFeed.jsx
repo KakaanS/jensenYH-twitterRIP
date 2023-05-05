@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import "../css/Post.css";
 
 function TweetFeedProfile({ username }) {
   const [tweets, setTweets] = useState([]);
@@ -32,7 +33,7 @@ function TweetFeedProfile({ username }) {
 
   return (
     <div>
-      <h3>Profile Tweets</h3>
+      <h3>My Tweets</h3>
       {tweets.map((tweet) => (
         <div key={tweet._id} className="post">
           <div className="post__avatar"></div>

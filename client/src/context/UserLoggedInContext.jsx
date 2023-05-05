@@ -4,11 +4,12 @@ const isUserLoggedInContext = createContext();
 
 export const UserLoggedInProvider = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userNickname, setUserNickname] = useState("");
 
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3002/users/me", {
+    fetch("http://localhost:3002/users/jwt", {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -17,6 +18,7 @@ export const UserLoggedInProvider = (props) => {
         return res.json();
       })
       .then((data) => {
+        setUserNickname(data.nickname);
         setUserLoggedIn(true);
       })
       .catch((err) => {
@@ -25,7 +27,9 @@ export const UserLoggedInProvider = (props) => {
   }, [token]);
 
   return (
-    <isUserLoggedInContext.Provider value={[userLoggedIn, setUserLoggedIn]}>
+    <isUserLoggedInContext.Provider
+      value={[userLoggedIn, setUserLoggedIn, userNickname]}
+    >
       {props.children}
     </isUserLoggedInContext.Provider>
   );

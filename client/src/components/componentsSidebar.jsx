@@ -20,8 +20,6 @@ function Sidebar() {
       <SidebarOptions active Icon={HomeIcon} text="Home" />
       <SidebarOptions Icon={Person2Icon} text="Profile" />
       <SearchBar />
-
-    
     </div>
   );
 }

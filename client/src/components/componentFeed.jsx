@@ -6,8 +6,6 @@ import { FeedContext } from "../context/FeedContext.jsx";
 
 function Feed() {
   const [{ allTweets, loading }] = useContext(FeedContext);
-  console.log("loading", loading);
-  console.log("allTweets, Componentfeed", allTweets);
   if (loading) {
     return <div>loading tweets...</div>;
   }

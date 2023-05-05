@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { forgotPassword } from "../functions/functionsForgotPassword.js";
-import "../css/Login-signup.css"
+import "../css/Login-signup.css";
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");
@@ -80,7 +80,12 @@ const ForgotPassword = (props) => {
         {passwordResetUnsuccessful && (
           <p className="forgotPasswordDisplay">Incorrect email or nickname.</p>
         )}
-        <button className="link-btn" onClick={() => props.onFormSwitch('login')}>You remembered your pasword? Login here.</button>
+        <button
+          className="link-btn"
+          onClick={() => props.onFormSwitch("login")}
+        >
+          You remembered your pasword? Login here.
+        </button>
       </div>
     </div>
   );

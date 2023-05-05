@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import "../css/Post.css";
 
-
-
 function TweetFeedProfile({ username }) {
   const [tweets, setTweets] = useState([]);
 

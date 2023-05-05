@@ -21,7 +21,6 @@ function AuthenticatedRoutes() {
 
   useEffect(() => {
     async function redirectIfNotAuthenticated() {
-      console.log("userLoggedIn22222", userLoggedIn);
       if (!userLoggedIn) {
         navigate("/");
       }

@@ -12,6 +12,7 @@ const SignUp = (props) => {
   const [about, setAbout] = useState("");
   const [employment, setEmployment] = useState("");
   const [hometown, setHometown] = useState("");
+  const [profilePicture, setProfilePicture] = useState([]);
   const [webbpage, setWebbpage] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState(false);
   // Använd form data istället för att skicka in alla dessa värden som props
@@ -27,22 +28,24 @@ const SignUp = (props) => {
     }
     setPasswordMatchError(false);
 
+    const formData = new FormData();
+    formData.append("nickname", nickname);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("name", name);
+    formData.append("about", about);
+    formData.append("employment", employment);
+    formData.append("hometown", hometown);
+    formData.append("webbpage", webbpage);
+    formData.append("profilePicture", profilePicture);
+
     fetch("http://localhost:3002/user/signup", {
       //
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        nickname,
-        email,
-        password,
-        name,
-        about,
-        employment,
-        hometown,
-        webbpage,
-      }),
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -51,6 +54,10 @@ const SignUp = (props) => {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleFileChange = (e) => {
+    setProfilePicture(e.target.files[0]);
   };
 
   const passwordClassName = passwordMatchError
@@ -114,6 +121,8 @@ const SignUp = (props) => {
           value={webbpage}
           onChange={(e) => setWebbpage(e.target.value)}
         />
+        <label htmlFor="profilePicture">profilePicture</label>
+        <input type="file" id="myFileInput" onChange={handleFileChange} />
         <label htmlFor="password">password</label>
         <input
           className={passwordClassName}

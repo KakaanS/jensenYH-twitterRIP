@@ -1,7 +1,7 @@
 import react, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { checkPasswordMatch } from "../functions/functionsSignup.js";
-import '../css/Login-signup.css';
+import "../css/Login-signup.css";
 
 const SignUp = (props) => {
   const [nickname, setNickname] = useState("");
@@ -14,6 +14,7 @@ const SignUp = (props) => {
   const [hometown, setHometown] = useState("");
   const [webbpage, setWebbpage] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState(false);
+  // Använd form data istället för att skicka in alla dessa värden som props
 
   const navigate = useNavigate();
 
@@ -26,7 +27,8 @@ const SignUp = (props) => {
     }
     setPasswordMatchError(false);
 
-    fetch("http://localhost:3002/user/signup", {//
+    fetch("http://localhost:3002/user/signup", {
+      //
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +61,9 @@ const SignUp = (props) => {
 
   return (
     <div className="auth-form-container">
+
        <h2 className="h2-login">Sign Up</h2>
+
       <form className="signUpForm" onSubmit={submitHandler}>
         <label htmlFor="Name">Name</label>
         <input
@@ -77,7 +81,7 @@ const SignUp = (props) => {
           onChange={(e) => setNickname(e.target.value)}
         />
         <label htmlFor="email">email</label>
-        
+
         <input
           type="text"
           placeholder="email"
@@ -137,7 +141,9 @@ const SignUp = (props) => {
           Sign Up
         </button>
       </form>
-      <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
+      <button className="link-btn" onClick={() => props.onFormSwitch("login")}>
+        Already have an account? Login here.
+      </button>
     </div>
   );
 };

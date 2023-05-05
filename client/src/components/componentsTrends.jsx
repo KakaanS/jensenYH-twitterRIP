@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { TrendsContext } from "../context/TrendsContext.jsx";
+import { TrendsContext } from "../context/TrendsContext";
 import "../css/Trends.css";
 
+
 function Trends() {
-  const [hashtags] = useContext(TrendsContext);
+  const [hashtags, setHashtags] = useContext(TrendsContext);
 
   if (!hashtags) {
     return <div>Loading...</div>;

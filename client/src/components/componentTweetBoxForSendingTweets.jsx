@@ -6,8 +6,7 @@ import { FeedContext } from "../context/FeedContext";
 import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 
 function TweetBoxForSendingTweets() {
-  const [tweetsState, setTweetsState, reload, setReload] =
-    useContext(FeedContext);
+  const [allTweets, setAllTweets, reload, setReload] = useContext(FeedContext);
   const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
     isUserLoggedInContext
   );

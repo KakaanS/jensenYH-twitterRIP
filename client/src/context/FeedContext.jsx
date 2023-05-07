@@ -1,13 +1,13 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
+
+import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 
 export const FeedContext = createContext();
 
 export const FeedProvider = (props) => {
-  const [tweetsState, setTweetsState] = useState({
-    allTweets: [],
-    loading: true,
-  });
+  const [allTweets, setAllTweets] = useState([]);
   const [reload, setReload] = useState(true);
+  const [userLoggedIn] = useContext(isUserLoggedInContext);
 
   const token = localStorage.getItem("token");
 
@@ -21,17 +21,15 @@ export const FeedProvider = (props) => {
         return res.json();
       })
       .then((data) => {
-        setTweetsState({ allTweets: data.allTweets, loading: false });
+        setAllTweets(data.allTweets);
       })
       .catch((err) => {
-        setTweetsState({ allTweets: [], loading: false });
+        console.log(err);
       });
-  }, [token, reload]);
+  }, [userLoggedIn, reload]);
 
   return (
-    <FeedContext.Provider
-      value={[tweetsState, setTweetsState, reload, setReload]}
-    >
+    <FeedContext.Provider value={[allTweets, setAllTweets, reload, setReload]}>
       {props.children}
     </FeedContext.Provider>
   );

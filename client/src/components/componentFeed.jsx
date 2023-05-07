@@ -5,8 +5,9 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { FeedContext } from "../context/FeedContext.jsx";
 
 function Feed() {
-  const [{ allTweets, loading }] = useContext(FeedContext);
-  if (loading) {
+  const [allTweets] = useContext(FeedContext);
+
+  if (allTweets === undefined || allTweets.length === 0) {
     return <div>loading tweets...</div>;
   }
 
@@ -14,7 +15,11 @@ function Feed() {
     <>
       {allTweets.map((tweet) => (
         <div key={tweet._id} className="post">
-          <div className="post__avatar"></div>
+          <div className="post__avatar">
+            <Avatar
+              src={`http://localhost:3002/images/${tweet.nickname}.png`}
+            />
+          </div>
 
           <div className="post__body">
             <div className="post__header">

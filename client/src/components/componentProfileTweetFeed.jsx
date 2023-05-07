@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { Avatar } from "@mui/material";
+
 import "../css/Post.css";
 
 function TweetFeedProfile({ username }) {
@@ -36,7 +38,11 @@ function TweetFeedProfile({ username }) {
       <h3>My Tweets</h3>
       {tweets.map((tweet) => (
         <div key={tweet._id} className="post">
-          <div className="post__avatar"></div>
+          <div className="post__avatar">
+            <Avatar
+              src={`http://localhost:3002/images/${tweet.nickname}.png`}
+            />
+          </div>
 
           <div className="post__body">
             <div className="post__header">

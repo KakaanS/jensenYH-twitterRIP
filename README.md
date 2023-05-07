@@ -1,9 +1,10 @@
 TO RUN THE PROJECT:
+Dont forget to download the backend and run it first!
 
-1. Open three different terminals and go into client, database and server in the separate terminal.
+https://github.com/nordinsimon/jensenYH-twitterRIP-Backend
 
-2. run "npm install" in every folder (client, database and server)
+1. Go into the client folder
 
-3. in client run "npm run dev"
-4. in databese run "npm run server"
-5. in server run "npm run dev"
+2. run "npm install"
+
+3. Run "npm run dev"

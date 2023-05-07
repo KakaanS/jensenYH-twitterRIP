@@ -70,10 +70,6 @@ function SearchBar() {
 
   return (
     <>
-      <div className="sidebarOption" onClick={handleSubmit}>
-        <SearchIcon />
-        <h2>Search</h2>
-      </div>
       <input
         className="search-div-input"
         type="text"
@@ -81,6 +77,10 @@ function SearchBar() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       {result()}
+      <div className="sidebarOption" onClick={handleSubmit}>
+        <SearchIcon />
+        <h2>Search</h2>
+      </div>
     </>
   );
 }

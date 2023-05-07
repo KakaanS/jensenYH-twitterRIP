@@ -1,5 +1,4 @@
 import react, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { checkPasswordMatch } from "../functions/functionsSignup.js";
 import "../css/Login-signup.css";
 
@@ -15,9 +14,9 @@ const SignUp = ({ onFormSwitch }) => {
   const [profilePicture, setProfilePicture] = useState([]);
   const [webbpage, setWebbpage] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState(false);
-  // Använd form data istället för att skicka in alla dessa värden som props
 
-  const navigate = useNavigate();
+  const [correctFile, setCorrectFile] = useState(true);
+  // Använd form data istället för att skicka in alla dessa värden som props
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -48,13 +47,26 @@ const SignUp = ({ onFormSwitch }) => {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
-      .then((data) => {
-        onFormSwitch("login");
+      .then((response) => response.status)
+      .then((status) => {
+        if (status === 415) {
+          setCorrectFile(false);
+        } else if (status === 201) {
+          setCorrectFile(true);
+          onFormSwitch("login");
+        }
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const WrongFileFormate = () => {
+    if (correctFile) {
+      return <></>;
+    } else {
+      return <p className="password-error">Wrong file format!</p>;
+    }
   };
 
   const handleFileChange = (e) => {
@@ -122,8 +134,10 @@ const SignUp = ({ onFormSwitch }) => {
           value={webbpage}
           onChange={(e) => setWebbpage(e.target.value)}
         />
-        <label htmlFor="profilePicture">profilePicture</label>
+        <label htmlFor="profilePicture">profilePicture (.png)</label>
+
         <input type="file" id="myFileInput" onChange={handleFileChange} />
+        <WrongFileFormate />
         <label htmlFor="password">password</label>
         <input
           className={passwordClassName}

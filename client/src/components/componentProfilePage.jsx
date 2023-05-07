@@ -51,7 +51,7 @@ const ProfilePage = () => {
     if (username === userNickname) {
       return <></>;
     } else if (isFollowing) {
-      return <h3>Following</h3>;
+      return <h3 className="profile-Button-text">Following</h3>;
     } else {
       return (
         <button className="follow-button" onClick={follow}>
@@ -88,9 +88,7 @@ const ProfilePage = () => {
             alt="Profile image"
           ></img>
           <h2 className="profile-name">{name}</h2>
-          <div className="profile-Button-text">
-            <FollowButton />
-          </div>
+          <FollowButton />
         </div>
 
         <div className="info-div">

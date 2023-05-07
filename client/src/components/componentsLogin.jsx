@@ -3,7 +3,7 @@ import { login } from "../functions/functionsLogin.js";
 import { useNavigate } from "react-router-dom";
 import "../css/Login-signup.css";
 
-function Login(props) {
+function Login({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -48,13 +48,13 @@ function Login(props) {
         />
         <button onClick={handleLogin}>LOGIN</button>
       </form>
-      <button className="link-btn" onClick={() => props.onFormSwitch("signup")}>
+      <button className="link-btn" onClick={() => onFormSwitch("signup")}>
         {" "}
         Don't have an account? Register here.
       </button>
       <button
         className="link-btn"
-        onClick={() => props.onFormSwitch("forgotPassword")}
+        onClick={() => onFormSwitch("forgotPassword")}
       >
         {" "}
         Forgot password? Change it here.

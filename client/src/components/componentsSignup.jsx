@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { checkPasswordMatch } from "../functions/functionsSignup.js";
 import "../css/Login-signup.css";
 
-const SignUp = (props) => {
+const SignUp = ({ onFormSwitch }) => {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,7 +50,7 @@ const SignUp = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        navigate("/");
+        onFormSwitch("login");
       })
       .catch((error) => {
         console.error(error);
@@ -148,7 +148,7 @@ const SignUp = (props) => {
           Sign Up
         </button>
       </form>
-      <button className="link-btn" onClick={() => props.onFormSwitch("login")}>
+      <button className="link-btn" onClick={() => onFormSwitch("login")}>
         Already have an account? Login here.
       </button>
     </div>

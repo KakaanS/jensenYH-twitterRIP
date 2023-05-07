@@ -39,12 +39,17 @@
 }
 
 .follow-button {
-  display: flex;
   color: white;
   background: var(--twitter-color);
   border: solid var(--twitter-color);
   padding: 5px 20px;
-  margin-bottom: 20px;
+  margin-left: -407px;
+  margin-top: 250px;
+}
+.profile-Button-text {
+  padding: 0px;
+  margin-left: -435px;
+  margin-top: 250px;
 }
 .info-div {
   position: relative;

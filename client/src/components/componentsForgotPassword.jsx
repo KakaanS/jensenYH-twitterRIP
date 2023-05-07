@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { forgotPassword } from "../functions/functionsForgotPassword.js";
 import "../css/Login-signup.css";
 
-const ForgotPassword = (props) => {
+const ForgotPassword = ({ onFormSwitch }) => {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -13,15 +12,13 @@ const ForgotPassword = (props) => {
   const [emailValid, setEmailValid] = useState(true);
   const [nicknameValid, setNicknameValid] = useState(true);
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await forgotPassword(email, nickname, newPassword);
     console.log(result);
     if (result === true) {
       setPasswordResetSuccessful(true);
-      navigate("/");
+      onFormSwitch("login");
       console.log("Password reset successful, redirected to Login");
     } else {
       setEmailValid(false);
@@ -80,10 +77,7 @@ const ForgotPassword = (props) => {
         {passwordResetUnsuccessful && (
           <p className="forgotPasswordDisplay">Incorrect email or nickname.</p>
         )}
-        <button
-          className="link-btn"
-          onClick={() => props.onFormSwitch("login")}
-        >
+        <button className="link-btn" onClick={() => onFormSwitch("login")}>
           You remembered your pasword? Login here.
         </button>
       </div>

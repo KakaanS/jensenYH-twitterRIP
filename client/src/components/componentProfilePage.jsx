@@ -88,7 +88,9 @@ const ProfilePage = () => {
             alt="Profile image"
           ></img>
           <h2 className="profile-name">{name}</h2>
-          <FollowButton />
+          <div className="profile-Button-text">
+            <FollowButton />
+          </div>
         </div>
 
         <div className="info-div">

@@ -46,6 +46,11 @@
   padding: 5px 20px;
   margin-bottom: 20px;
 }
+.profile-Button-text {
+  padding: 0px;
+  margin-left: 20px;
+  margin-top: 174px;
+}
 .info-div {
   position: relative;
   display: inline;

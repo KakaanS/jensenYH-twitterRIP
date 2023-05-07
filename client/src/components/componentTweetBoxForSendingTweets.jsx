@@ -3,10 +3,13 @@ import "../css/TweetBox.css";
 import { Avatar, Button } from "@mui/material";
 import sendTweet from "../functions/functionsSendTweet";
 import { FeedContext } from "../context/FeedContext";
+import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 
 function TweetBoxForSendingTweets() {
-  const [tweetsState, setTweetsState, reload, setReload] =
-    useContext(FeedContext);
+  const [allTweets, setAllTweets, reload, setReload] = useContext(FeedContext);
+  const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
+    isUserLoggedInContext
+  );
 
   const [tweetMessage, setTweetMessage] = useState("");
 
@@ -23,7 +26,7 @@ function TweetBoxForSendingTweets() {
     <div className="tweetBox">
       <form>
         <div className="tweetBox__input">
-          <Avatar src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-boy-user-avatar-vector-icon-free-png-image_4827808.jpg" />
+          <Avatar src={`http://localhost:3002/images/${userNickname}.png`} />
           <input
             onChange={(e) => setTweetMessage(e.target.value)}
             value={tweetMessage}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../css/ProfilepageGoran.css";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -12,7 +12,12 @@ import QueryBuilderOutlinedIcon from "@mui/icons-material/QueryBuilderOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
 
+import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
+
 const ProfilePage = () => {
+  const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
+    isUserLoggedInContext
+  );
   const [user, setUser] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
 
@@ -37,13 +42,26 @@ const ProfilePage = () => {
     fetchUser();
   }, [username]);
 
-  const followButton = () => {
-    const response = followUser(username);
+  const follow = async () => {
+    const response = await followUser(username);
     setIsFollowing(response);
   };
 
+  const FollowButton = () => {
+    if (username === userNickname) {
+      return <></>;
+    } else if (isFollowing) {
+      return <h3>Following</h3>;
+    } else {
+      return (
+        <button className="follow-button" onClick={follow}>
+          Follow
+        </button>
+      );
+    }
+  };
+
   const {
-    profile_image,
     name,
     tweets,
     nickname,
@@ -66,13 +84,11 @@ const ProfilePage = () => {
         <div className="profileImage-div">
           <img
             className="profileImg"
-            src={profile_image}
+            src={`http://localhost:3002/images/${nickname}.png`}
             alt="Profile image"
           ></img>
           <h2 className="profile-name">{name}</h2>
-          <button className="follow-button" onClick={followButton}>
-            {isFollowing ? "Following" : "Follow"}
-          </button>
+          <FollowButton />
         </div>
 
         <div className="info-div">

@@ -30,6 +30,7 @@ export const UserLoggedInProvider = (props) => {
   useEffect(() => {
     if (userNickname !== "") {
       setUserLoggedIn(true);
+      navigate("/home");
     } else {
       setUserLoggedIn(false);
       navigate("/");
@@ -38,7 +39,7 @@ export const UserLoggedInProvider = (props) => {
 
   return (
     <isUserLoggedInContext.Provider
-      value={[userLoggedIn, setUserLoggedIn, userNickname]}
+      value={[userLoggedIn, setUserLoggedIn, userNickname, setUserNickname]}
     >
       {props.children}
     </isUserLoggedInContext.Provider>

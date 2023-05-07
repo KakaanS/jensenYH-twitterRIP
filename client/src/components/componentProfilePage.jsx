@@ -43,7 +43,6 @@ const ProfilePage = () => {
   };
 
   const {
-    profile_image,
     name,
     tweets,
     nickname,
@@ -66,7 +65,7 @@ const ProfilePage = () => {
         <div className="profileImage-div">
           <img
             className="profileImg"
-            src={profile_image}
+            src={`http://localhost:3002/images/${nickname}.png`}
             alt="Profile image"
           ></img>
           <h2 className="profile-name">{name}</h2>

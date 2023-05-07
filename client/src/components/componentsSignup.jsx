@@ -39,12 +39,13 @@ const SignUp = (props) => {
     formData.append("webbpage", webbpage);
     formData.append("profilePicture", profilePicture);
 
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
     fetch("http://localhost:3002/user/signup", {
       //
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: formData,
     })
       .then((response) => response.json())

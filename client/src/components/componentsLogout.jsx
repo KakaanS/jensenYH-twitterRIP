@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap"; //izbrisao Button
 import removeToken from "../functions/functionsLogout.js";
 import "../css/modalBackground.css";
 import { Button } from "@mui/material";
+import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 
 const LogoutModal = ({ show, closeCallback, handleLogoutCallback }) => {
   return (
@@ -34,6 +35,8 @@ const LogoutModal = ({ show, closeCallback, handleLogoutCallback }) => {
 };
 
 const Logout = () => {
+  const [userLoggedIn, setUserLoggedIn, userNickname, setUserNickname] =
+    useContext(isUserLoggedInContext);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
@@ -47,6 +50,9 @@ const Logout = () => {
   const handleLogoutConfirm = () => {
     /* handleLogout(); */
     removeToken();
+    setUserLoggedIn(false);
+    setUserNickname("");
+
     navigate("/");
     handleClose();
   };

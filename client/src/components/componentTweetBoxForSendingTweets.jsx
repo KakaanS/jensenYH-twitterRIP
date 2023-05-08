@@ -12,6 +12,7 @@ function TweetBoxForSendingTweets() {
   );
 
   const [tweetMessage, setTweetMessage] = useState("");
+  const [charCount, setCharCount] = useState(0);
 
   const handleSendTweet = async (e) => {
     e.preventDefault();
@@ -22,23 +23,33 @@ function TweetBoxForSendingTweets() {
     }
   };
 
+  const handleCharCount = (e) => {
+    const inputText = e.target.value;
+    setTweetMessage(inputText.slice(0, 120));
+    setCharCount(inputText.length);
+  };
+
   return (
     <div className="tweetBox">
       <form>
         <div className="tweetBox__input">
           <Avatar src={`http://localhost:3002/images/${userNickname}.png`} />
           <input
-            onChange={(e) => setTweetMessage(e.target.value)}
+            onChange={handleCharCount}
             value={tweetMessage}
             placeholder="What's happening?"
             type="text"
+            maxLength={120}
+            onKeyUp={(e) => setCharCount(e.target.value.length)}
           />
         </div>
+        <div className="tweetBox__counter">{charCount}/120</div>
 
         <Button
           onClick={handleSendTweet}
           type="submit"
           className="tweetBox__tweetButton"
+          disabled={charCount === 0 || charCount > 120}
         >
           Tweet
         </Button>

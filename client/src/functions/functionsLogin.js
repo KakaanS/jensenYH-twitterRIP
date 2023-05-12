@@ -2,7 +2,7 @@ const theConnector = import.meta.env.VITE_API_URL;
 // `${theConnector}`
 
 async function login(email, password) {
-  return await fetch(`${theConnector}/user/login`, {
+  return await fetch(`https://shitter-backend-test.vercel.app/user/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -4,6 +4,9 @@ import { Avatar } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { FeedContext } from "../context/FeedContext.jsx";
 
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 function Feed() {
   const [allTweets] = useContext(FeedContext);
 
@@ -16,9 +19,7 @@ function Feed() {
       {allTweets.map((tweet) => (
         <div key={tweet._id} className="post">
           <div className="post__avatar">
-            <Avatar
-              src={`http://localhost:3002/images/${tweet.nickname}.png`}
-            />
+            <Avatar src={`${theConnector}/images/${tweet.nickname}.png`} />
           </div>
 
           <div className="post__body">

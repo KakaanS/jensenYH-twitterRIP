@@ -1,7 +1,10 @@
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 const sendTweet = async (tweetMessage) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3002/tweets/tweet", {
+    const response = await fetch(`${theConnector}/tweets/tweet`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

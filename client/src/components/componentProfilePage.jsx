@@ -14,6 +14,9 @@ import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
 
 import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 const ProfilePage = () => {
   const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
     isUserLoggedInContext
@@ -26,14 +29,11 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:3002/user/profile/${username}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      const response = await fetch(`${theConnector}/user/profile/${username}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       const data = await response.json();
       setUser(data.userToSend);
       setIsFollowing(data.isFollowing);
@@ -84,7 +84,7 @@ const ProfilePage = () => {
         <div className="profileImage-div">
           <img
             className="profileImg"
-            src={`http://localhost:3002/images/${nickname}.png`}
+            src={`${theConnector}/images/${nickname}.png`}
             alt="Profile image"
           ></img>
           <h2 className="profile-name">{name}</h2>

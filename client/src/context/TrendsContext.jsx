@@ -3,13 +3,16 @@ import { FeedContext } from "./FeedContext.jsx";
 
 export const TrendsContext = createContext();
 
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 export const TrendsProvider = (props) => {
   const [hashtags, setHashtags] = useState([]);
   const token = localStorage.getItem("token");
   const [tweetState] = useContext(FeedContext);
 
   useEffect(() => {
-    fetch("http://localhost:3002/trending/hashtags", {
+    fetch(`${theConnector}/trending/hashtags`, {
       headers: {
         Authorization: "Bearer " + token,
       },

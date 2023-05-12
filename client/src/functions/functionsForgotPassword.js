@@ -1,6 +1,9 @@
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 const forgotPassword = async (email, nickname, newPassword) => {
   try {
-    const response = await fetch("http://localhost:3002/user/forgotpassword", {
+    const response = await fetch(`${theConnector}/user/forgotpassword`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

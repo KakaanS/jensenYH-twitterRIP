@@ -1,7 +1,10 @@
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 const followUser = async (nickname) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3002/user/follow", {
+    const response = await fetch(`${theConnector}/user/follow`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

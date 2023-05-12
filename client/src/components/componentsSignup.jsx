@@ -18,6 +18,9 @@ const SignUp = ({ onFormSwitch }) => {
   const [correctFile, setCorrectFile] = useState(true);
   // Använd form data istället för att skicka in alla dessa värden som props
 
+  const theConnector = import.meta.env.VITE_API_URL;
+  // `${theConnector}`
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -42,7 +45,7 @@ const SignUp = ({ onFormSwitch }) => {
       console.log(pair[0] + ", " + pair[1]);
     }
 
-    fetch("http://localhost:3002/user/signup", {
+    fetch(`${theConnector}/user/signup`, {
       //
       method: "POST",
       body: formData,

@@ -12,11 +12,14 @@ function SearchBar() {
 
   const navigate = useNavigate();
 
+  const theConnector = import.meta.env.VITE_API_URL;
+  // `${theConnector}`
+
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await fetch(`http://localhost:3002/search`, {
+        const response = await fetch(`${theConnector}/search`, {
           headers: {
             Authorization: "Bearer " + token,
           },

@@ -4,6 +4,9 @@ import { Avatar } from "@mui/material";
 
 import "../css/Post.css";
 
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 function TweetFeedProfile({ username }) {
   const [tweets, setTweets] = useState([]);
 
@@ -12,7 +15,7 @@ function TweetFeedProfile({ username }) {
       const token = localStorage.getItem("token");
       try {
         const response = await fetch(
-          `http://localhost:3002/tweets/fromUser/${username}`,
+          `${theConnector}/tweets/fromUser/${username}`,
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -39,9 +42,7 @@ function TweetFeedProfile({ username }) {
       {tweets.map((tweet) => (
         <div key={tweet._id} className="post">
           <div className="post__avatar">
-            <Avatar
-              src={`http://localhost:3002/images/${tweet.nickname}.png`}
-            />
+            <Avatar src={`${theConnector}/images/${tweet.nickname}.png`} />
           </div>
 
           <div className="post__body">

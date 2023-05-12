@@ -4,6 +4,9 @@ import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 
 export const FeedContext = createContext();
 
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 export const FeedProvider = (props) => {
   const [allTweets, setAllTweets] = useState([]);
   const [reload, setReload] = useState(true);
@@ -12,7 +15,7 @@ export const FeedProvider = (props) => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3002/tweets/feed", {
+    fetch(`${theConnector}/tweets/feed`, {
       headers: {
         Authorization: "Bearer " + token,
       },

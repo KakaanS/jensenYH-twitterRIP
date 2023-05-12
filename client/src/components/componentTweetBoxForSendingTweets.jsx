@@ -5,6 +5,9 @@ import sendTweet from "../functions/functionsSendTweet";
 import { FeedContext } from "../context/FeedContext";
 import { isUserLoggedInContext } from "../context/UserLoggedInContext.jsx";
 
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 function TweetBoxForSendingTweets() {
   const [allTweets, setAllTweets, reload, setReload] = useContext(FeedContext);
   const [userLoggedIn, setUserLoggedIn, userNickname] = useContext(
@@ -33,7 +36,7 @@ function TweetBoxForSendingTweets() {
     <div className="tweetBox">
       <form>
         <div className="tweetBox__input">
-          <Avatar src={`http://localhost:3002/images/${userNickname}.png`} />
+          <Avatar src={`${theConnector}/images/${userNickname}.png`} />
           <input
             onChange={handleCharCount}
             value={tweetMessage}

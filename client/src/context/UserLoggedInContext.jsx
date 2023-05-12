@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 export const isUserLoggedInContext = createContext();
 
+const theConnector = import.meta.env.VITE_API_URL;
+// `${theConnector}`
+
 export const UserLoggedInProvider = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userNickname, setUserNickname] = useState("");
@@ -11,7 +14,7 @@ export const UserLoggedInProvider = (props) => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3002/user/JWT", {
+    fetch(`${theConnector}/user/JWT`, {
       headers: {
         Authorization: "Bearer " + token,
       },

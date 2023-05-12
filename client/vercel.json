@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/tweets/feed",
+      "destination": "https://shitter-backend-test.vercel.app/tweets/feed"
+    },
+    {
+      "source": "/user/JWT",
+      "destination": "https://shitter-backend-test.vercel.app/user/JWT"
+    },
+    {
+      "source": "/trending/hashtags",
+      "destination": "https://shitter-backend-test.vercel.app/trending/hashtags"
+    },
+    {
+      "source": "/user/login",
+      "destination": "https://shitter-backend-test.vercel.app/user/login"
+    }
+  ]
+}
